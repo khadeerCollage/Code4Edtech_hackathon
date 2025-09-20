@@ -1,0 +1,186 @@
+{
+  "source_image": "Img6.jpeg",
+  "exam_set": "Set_A",
+  "total_score": 0,
+  "max_score": 20,
+  "percentage": 0.0,
+  "subject_scores": {
+    "ADV STATS": 0,
+    "PYTHON": 0
+  },
+  "summary": {
+    "correct": 0,
+    "incorrect": 0,
+    "unattempted": 3,
+    "multiple_marked": 17,
+    "partially_marked": 0
+  },
+  "details": [
+    {
+      "question": 1,
+      "marked": "a,b,c,d",
+      "correct": [
+        "a"
+      ],
+      "status": "Multiple Marked"
+    },
+    {
+      "question": 2,
+      "marked": "a,b,c,d",
+      "correct": [
+        "b"
+      ],
+      "status": "Multiple Marked"
+    },
+    {
+      "question": 3,
+      "marked": "a,b,c",
+      "correct": [
+        "c"
+      ],
+      "status": "Multiple Marked"
+    },
+    {
+      "question": 4,
+      "marked": "NONE",
+      "correct": [
+        "d"
+      ],
+      "status": "Unattempted"
+    },
+    {
+      "question": 5,
+      "marked": "a,b,c",
+      "correct": [
+        "a"
+      ],
+      "status": "Multiple Marked"
+    },
+    {
+      "question": 6,
+      "marked": "a,b,c,d",
+      "correct": [
+        "b"
+      ],
+      "status": "Multiple Marked"
+    },
+    {
+      "question": 7,
+      "marked": "a,b,c,d",
+      "correct": [
+        "c"
+      ],
+      "status": "Multiple Marked"
+    },
+    {
+      "question": 8,
+      "marked": "a,b,c,d",
+      "correct": [
+        "d"
+      ],
+      "status": "Multiple Marked"
+    },
+    {
+      "question": 9,
+      "marked": "a,b,c,d",
+      "correct": [
+        "a"
+      ],
+      "status": "Multiple Marked"
+    },
+    {
+      "question": 10,
+      "marked": "a,b,c",
+      "correct": [
+        "b"
+      ],
+      "status": "Multiple Marked"
+    },
+    {
+      "question": 11,
+      "marked": "a,b,c,d",
+      "correct": [
+        "c"
+      ],
+      "status": "Multiple Marked"
+    },
+    {
+      "question": 12,
+      "marked": "a,b,c",
+      "correct": [
+        "d"
+      ],
+      "status": "Multiple Marked"
+    },
+    {
+      "question": 13,
+      "marked": "NONE",
+      "correct": [
+        "a"
+      ],
+      "status": "Unattempted"
+    },
+    {
+      "question": 14,
+      "marked": "a,b,c",
+      "correct": [
+        "b"
+      ],
+      "status": "Multiple Marked"
+    },
+    {
+      "question": 15,
+      "marked": "a,b,c,d",
+      "correct": [
+        "c"
+      ],
+      "status": "Multiple Marked"
+    },
+    {
+      "question": 16,
+      "marked": "a,b,c,d",
+      "correct": [
+        "d"
+      ],
+      "status": "Multiple Marked"
+    },
+    {
+      "question": 17,
+      "marked": "NONE",
+      "correct": [
+        "a"
+      ],
+      "status": "Unattempted"
+    },
+    {
+      "question": 18,
+      "marked": "a,b,c",
+      "correct": [
+        "b"
+      ],
+      "status": "Multiple Marked"
+    },
+    {
+      "question": 19,
+      "marked": "a,b,c",
+      "correct": [
+        "c"
+      ],
+      "status": "Multiple Marked"
+    },
+    {
+      "question": 20,
+      "marked": "a,b,c,d",
+      "correct": [
+        "d"
+      ],
+      "status": "Multiple Marked"
+    }
+  ],
+  "timestamp": "2025-09-20T19:04:28.306237",
+  "questions_with_answer_key": 20,
+  "perspective_fallback": false,
+  "detected_set_code": null,
+  "subjects_detected": true,
+  "detection_method": "OCR-based"
+}
