@@ -1,0 +1,824 @@
+{
+    "source_image": "Img1.jpeg",
+    "exam_set": "Set_A",
+    "total_score": 0,
+    "subject_scores": {
+        "subject_1": 0,
+        "subject_2": 0,
+        "subject_3": 0,
+        "subject_4": 0,
+        "subject_5": 0
+    },
+    "summary": {
+        "correct": 0,
+        "incorrect": 0,
+        "unattempted": 100,
+        "partial": 0
+    },
+    "details": [
+        {
+            "question": 1,
+            "marked": "NONE",
+            "correct": [
+                "a"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 2,
+            "marked": "NONE",
+            "correct": [
+                "c"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 3,
+            "marked": "NONE",
+            "correct": [
+                "c"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 4,
+            "marked": "NONE",
+            "correct": [
+                "c"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 5,
+            "marked": "NONE",
+            "correct": [
+                "c"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 6,
+            "marked": "NONE",
+            "correct": [
+                "a"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 7,
+            "marked": "NONE",
+            "correct": [
+                "c"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 8,
+            "marked": "NONE",
+            "correct": [
+                "c"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 9,
+            "marked": "NONE",
+            "correct": [
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 10,
+            "marked": "NONE",
+            "correct": [
+                "c"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 11,
+            "marked": "NONE",
+            "correct": [
+                "a"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 12,
+            "marked": "NONE",
+            "correct": [
+                "a"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 13,
+            "marked": "NONE",
+            "correct": [
+                "d"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 14,
+            "marked": "NONE",
+            "correct": [
+                "a"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 15,
+            "marked": "NONE",
+            "correct": [
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 16,
+            "marked": "NONE",
+            "correct": [
+                "a",
+                "b",
+                "c",
+                "d"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 17,
+            "marked": "NONE",
+            "correct": [
+                "c"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 18,
+            "marked": "NONE",
+            "correct": [
+                "d"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 19,
+            "marked": "NONE",
+            "correct": [
+                "a"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 20,
+            "marked": "NONE",
+            "correct": [
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 21,
+            "marked": "NONE",
+            "correct": [
+                "a"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 22,
+            "marked": "NONE",
+            "correct": [
+                "d"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 23,
+            "marked": "NONE",
+            "correct": [
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 24,
+            "marked": "NONE",
+            "correct": [
+                "a"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 25,
+            "marked": "NONE",
+            "correct": [
+                "c"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 26,
+            "marked": "NONE",
+            "correct": [
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 27,
+            "marked": "NONE",
+            "correct": [
+                "a"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 28,
+            "marked": "NONE",
+            "correct": [
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 29,
+            "marked": "NONE",
+            "correct": [
+                "d"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 30,
+            "marked": "NONE",
+            "correct": [
+                "c"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 31,
+            "marked": "NONE",
+            "correct": [
+                "c"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 32,
+            "marked": "NONE",
+            "correct": [
+                "a"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 33,
+            "marked": "NONE",
+            "correct": [
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 34,
+            "marked": "NONE",
+            "correct": [
+                "c"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 35,
+            "marked": "NONE",
+            "correct": [
+                "a"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 36,
+            "marked": "NONE",
+            "correct": [
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 37,
+            "marked": "NONE",
+            "correct": [
+                "d"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 38,
+            "marked": "NONE",
+            "correct": [
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 39,
+            "marked": "NONE",
+            "correct": [
+                "a"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 40,
+            "marked": "NONE",
+            "correct": [
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 41,
+            "marked": "NONE",
+            "correct": [
+                "c"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 42,
+            "marked": "NONE",
+            "correct": [
+                "c"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 43,
+            "marked": "NONE",
+            "correct": [
+                "c"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 44,
+            "marked": "NONE",
+            "correct": [
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 45,
+            "marked": "NONE",
+            "correct": [
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 46,
+            "marked": "NONE",
+            "correct": [
+                "a"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 47,
+            "marked": "NONE",
+            "correct": [
+                "c"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 48,
+            "marked": "NONE",
+            "correct": [
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 49,
+            "marked": "NONE",
+            "correct": [
+                "d"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 50,
+            "marked": "NONE",
+            "correct": [
+                "a"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 51,
+            "marked": "NONE",
+            "correct": [
+                "c"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 52,
+            "marked": "NONE",
+            "correct": [
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 53,
+            "marked": "NONE",
+            "correct": [
+                "c"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 54,
+            "marked": "NONE",
+            "correct": [
+                "c"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 55,
+            "marked": "NONE",
+            "correct": [
+                "a"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 56,
+            "marked": "NONE",
+            "correct": [
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 57,
+            "marked": "NONE",
+            "correct": [
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 58,
+            "marked": "NONE",
+            "correct": [
+                "a"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 59,
+            "marked": "NONE",
+            "correct": [
+                "a",
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 60,
+            "marked": "NONE",
+            "correct": [
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 61,
+            "marked": "NONE",
+            "correct": [
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 62,
+            "marked": "NONE",
+            "correct": [
+                "c"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 63,
+            "marked": "NONE",
+            "correct": [
+                "a"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 64,
+            "marked": "NONE",
+            "correct": [
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 65,
+            "marked": "NONE",
+            "correct": [
+                "c"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 66,
+            "marked": "NONE",
+            "correct": [
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 67,
+            "marked": "NONE",
+            "correct": [
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 68,
+            "marked": "NONE",
+            "correct": [
+                "c"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 69,
+            "marked": "NONE",
+            "correct": [
+                "c"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 70,
+            "marked": "NONE",
+            "correct": [
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 71,
+            "marked": "NONE",
+            "correct": [
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 72,
+            "marked": "NONE",
+            "correct": [
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 73,
+            "marked": "NONE",
+            "correct": [
+                "d"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 74,
+            "marked": "NONE",
+            "correct": [
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 75,
+            "marked": "NONE",
+            "correct": [
+                "a"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 76,
+            "marked": "NONE",
+            "correct": [
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 77,
+            "marked": "NONE",
+            "correct": [
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 78,
+            "marked": "NONE",
+            "correct": [
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 79,
+            "marked": "NONE",
+            "correct": [
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 80,
+            "marked": "NONE",
+            "correct": [
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 81,
+            "marked": "NONE",
+            "correct": [
+                "a"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 82,
+            "marked": "NONE",
+            "correct": [
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 83,
+            "marked": "NONE",
+            "correct": [
+                "c"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 84,
+            "marked": "NONE",
+            "correct": [
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 85,
+            "marked": "NONE",
+            "correct": [
+                "c"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 86,
+            "marked": "NONE",
+            "correct": [
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 87,
+            "marked": "NONE",
+            "correct": [
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 88,
+            "marked": "NONE",
+            "correct": [
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 89,
+            "marked": "NONE",
+            "correct": [
+                "a"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 90,
+            "marked": "NONE",
+            "correct": [
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 91,
+            "marked": "NONE",
+            "correct": [
+                "c"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 92,
+            "marked": "NONE",
+            "correct": [
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 93,
+            "marked": "NONE",
+            "correct": [
+                "c"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 94,
+            "marked": "NONE",
+            "correct": [
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 95,
+            "marked": "NONE",
+            "correct": [
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 96,
+            "marked": "NONE",
+            "correct": [
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 97,
+            "marked": "NONE",
+            "correct": [
+                "c"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 98,
+            "marked": "NONE",
+            "correct": [
+                "a"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 99,
+            "marked": "NONE",
+            "correct": [
+                "b"
+            ],
+            "status": "Unattempted"
+        },
+        {
+            "question": 100,
+            "marked": "NONE",
+            "correct": [
+                "c"
+            ],
+            "status": "Unattempted"
+        }
+    ]
+}
