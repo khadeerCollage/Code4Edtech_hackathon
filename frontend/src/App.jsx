@@ -1,40 +1,39 @@
-import React, { useState } from 'react';
-import AuthForm from './components/AuthForm.jsx';
+import { Toaster } from "@/components/ui/toaster.jsx";
+import { Toaster as Sonner } from "@/components/ui/sonner.jsx";
+import { TooltipProvider } from "@/components/ui/tooltip.jsx";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Index from "./pages/Index.jsx";
+import Login from "./pages/Login.jsx";
+import Register from "./pages/Register.jsx";
+import Dashboard from "./pages/Dashboard.jsx";
+import Upload from "./pages/Upload.jsx";
+import Results from "./pages/Results.jsx";
+import WorkflowDemo from "./pages/WorkflowDemo.jsx";
+import NotFound from "./pages/NotFound.jsx";
 
-export default function App() {
-  const [mode, setMode] = useState('login');
-  return (
-    <div style={{
-      fontFamily: 'system-ui, sans-serif',
-      display: 'flex',
-      minHeight: '100vh',
-      alignItems: 'center',
-      justifyContent: 'center',
-      background: '#0f172a',
-      color: '#fff'
-    }}>
-      <div style={{background:'#1e293b', padding:'2rem', borderRadius: '12px', width:'340px', boxShadow:'0 8px 24px -8px rgba(0,0,0,0.5)'}}>
-        <h1 style={{marginTop:0, fontSize:'1.4rem', textAlign:'center'}}>Auth Portal</h1>
-        <div style={{display:'flex', gap:'0.5rem', marginBottom:'1rem'}}>
-          <button onClick={()=>setMode('login')} style={btnStyle(mode==='login')}>Login</button>
-          <button onClick={()=>setMode('register')} style={btnStyle(mode==='register')}>Register</button>
-        </div>
-        <AuthForm mode={mode} />
-        <p style={{fontSize:'0.7rem', opacity:0.6, marginTop:'1.5rem', textAlign:'center'}}>Flask + React + Postgres Demo</p>
-      </div>
-    </div>
-  );
-}
+const queryClient = new QueryClient();
 
-function btnStyle(active){
-  return {
-    flex:1,
-    padding:'0.55rem 0.75rem',
-    background: active ? '#3b82f6' : '#334155',
-    color:'#fff',
-    border:'none',
-    borderRadius:6,
-    cursor:'pointer',
-    fontWeight:600
-  }
-}
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/upload" element={<Upload />} />
+          <Route path="/results/:batchId" element={<Results />} />
+          <Route path="/workflow-demo" element={<WorkflowDemo />} />
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </TooltipProvider>
+  </QueryClientProvider>
+);
+
+export default App;

@@ -1,0 +1,490 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 210 20% 98%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 221 83% 53%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 221 83% 65%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    --success-light: 142 76% 95%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --warning-light: 38 92% 95%;
+
+    --processing: 221 83% 53%;
+    --processing-foreground: 0 0% 100%;
+    --processing-light: 221 83% 95%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221 83% 53%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-success: linear-gradient(135deg, hsl(var(--success)), hsl(142 76% 45%));
+    --gradient-card: linear-gradient(180deg, hsl(var(--card)), hsl(210 20% 99%));
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(var(--primary) / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(var(--primary) / 0.1), 0 2px 4px -1px hsl(var(--primary) / 0.06);
+    --shadow-lg: 0 10px 15px -3px hsl(var(--primary) / 0.1), 0 4px 6px -2px hsl(var(--primary) / 0.05);
+    --shadow-glow: 0 0 20px hsl(var(--primary-glow) / 0.3);
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Prevent text selection and cursor on interactive elements */
+  button, 
+  .cursor-pointer, 
+  [role="button"], 
+  .card, 
+  .clickable,
+  [data-radix-collection-item] {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    cursor: pointer;
+  }
+
+  /* Ensure no text cursor appears on dashboard elements */
+  button:not(input), 
+  .dashboard-element,
+  .card-content,
+  .badge,
+  .metric-card,
+  div[role="button"],
+  .hover\:bg-muted\/50:hover,
+  .transition-colors {
+    cursor: default;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+
+  /* Remove text cursor from text elements that shouldn't be selectable */
+  .no-select,
+  .no-select *,
+  .card .no-select,
+  h1.no-select,
+  h2.no-select, 
+  h3.no-select,
+  h4.no-select,
+  p.no-select,
+  span.no-select,
+  div.no-select {
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    cursor: default !important;
+  }
+
+  /* Specific styles for clickable cards and interactive elements */
+  .cursor-pointer.no-select,
+  [onclick].no-select,
+  .transition-colors.no-select {
+    cursor: pointer !important;
+  }
+
+  /* Allow text selection only in specific input areas */
+  input,
+  textarea,
+  [contenteditable="true"],
+  .allow-select {
+    user-select: text !important;
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important;
+    cursor: text !important;
+  }
+
+  /* Table-specific styles to ensure proper text display */
+  table,
+  table *,
+  .table,
+  .table *,
+  [role="table"],
+  [role="table"] *,
+  tbody tr,
+  tbody tr *,
+  td,
+  th {
+    color: inherit !important;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fade-in 0.6s ease-out forwards;
+  }
+  
+  .animate-slide-up {
+    animation: slide-up 0.8s ease-out forwards;
+  }
+  
+  .animate-scale-in {
+    animation: scale-in 0.4s ease-out forwards;
+  }
+  
+  .animate-bounce-in {
+    animation: bounce-in 0.6s ease-out forwards;
+  }
+  
+  .animate-progress {
+    animation: progress-fill 2s ease-in-out forwards;
+  }
+
+  /* Animated gradient border utilities for inputs */
+  .gradient-border-rtl {
+    /* This class is designed to be used on a wrapper with p-[2px] + rounded-* */
+    background-image: linear-gradient(270deg, #60a5fa, #6366f1, #a78bfa, #60a5fa);
+    background-size: 200% 100%;
+    transition: filter 200ms ease, opacity 200ms ease;
+  }
+  .animate-gradient-rtl {
+    animation: gradient-rtl 3s linear infinite;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounce-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes progress-fill {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* Background moves from right → left to create a flowing gradient border */
+@keyframes gradient-rtl {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: 0% 0;
+  }
+}
+
+/* Button hover effect animations */
+@keyframes button-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+  }
+}
+
+@keyframes button-glow {
+  0% {
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.8), 0 0 30px rgba(37, 99, 235, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+  }
+}
+
+@keyframes button-shimmer {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
+
+/* Enhanced button hover effects */
+.button-hover-pulse:hover {
+  animation: button-pulse 1.5s infinite;
+  background: linear-gradient(45deg, #3b82f6, #1d4ed8) !important;
+  color: white !important;
+}
+
+.button-hover-glow:hover {
+  animation: button-glow 2s ease-in-out infinite;
+  background: linear-gradient(45deg, #3b82f6, #1e40af) !important;
+  color: white !important;
+}
+
+.button-hover-shimmer {
+  background-size: 200% 100%;
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 100%
+  );
+}
+
+.button-hover-shimmer:hover {
+  animation: button-shimmer 1.5s ease-in-out;
+  background: linear-gradient(45deg, #2563eb, #1d4ed8) !important;
+  color: white !important;
+}
+
+/* Ripple effect for buttons */
+.button-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.button-ripple:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(59, 130, 246, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.button-ripple:hover:before {
+  width: 300px;
+  height: 300px;
+}
+
+.button-ripple:hover {
+  background: linear-gradient(45deg, #3b82f6, #1e40af) !important;
+  color: white !important;
+}
+
+/* Gradient button hover enhancement */
+button[class*="gradient"]:hover,
+.button-gradient:hover {
+  background: linear-gradient(45deg, #3b82f6, #1e40af) !important;
+  background-size: 150% 150%;
+  background-position: center;
+  filter: brightness(1.1) saturate(1.1);
+  color: white !important;
+}
+
+/* Button group hover effects */
+.button-group button:hover {
+  z-index: 10;
+  position: relative;
+  background: linear-gradient(45deg, #3b82f6, #2563eb) !important;
+  color: white !important;
+}
+
+/* Floating button effect */
+.button-float:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 15px 25px rgba(59, 130, 246, 0.3), 0 10px 10px rgba(59, 130, 246, 0.2);
+  background: linear-gradient(45deg, #3b82f6, #1d4ed8) !important;
+  color: white !important;
+}
+
+/* Button border animation */
+.button-border-animate {
+  position: relative;
+  border: 2px solid transparent;
+}
+
+.button-border-animate:before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #3b82f6, #1e40af, #2563eb);
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.button-border-animate:hover:before {
+  opacity: 1;
+}
+
+.button-border-animate:hover {
+  background: linear-gradient(45deg, #3b82f6, #1e40af) !important;
+  color: white !important;
+}
+
+/* Icon rotation on hover */
+.button-icon-rotate:hover [data-lucide] {
+  transform: rotate(360deg);
+  transition: transform 0.5s ease;
+}
+
+/* Button text slide effect */
+.button-text-slide {
+  overflow: hidden;
+}
+
+.button-text-slide span {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.button-text-slide:hover span {
+  transform: translateY(-100%);
+}
+
+.button-text-slide:after {
+  content: attr(data-hover);
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: top 0.3s ease;
+}
+
+.button-text-slide:hover:after {
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
