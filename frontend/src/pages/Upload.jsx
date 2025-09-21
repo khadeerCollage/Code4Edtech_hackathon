@@ -78,8 +78,9 @@ const Upload = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!examName || !answerKeyVersion || files.length === 0) {
-      toast({ title: "Missing Information", description: "Please fill in all fields and select files", variant: "destructive" });
+    // Enable upload after file selection; optional to require metadata
+    if (files.length === 0) {
+      toast({ title: "No Files Selected", description: "Please select images to upload", variant: "destructive" });
       return;
     }
 
@@ -92,7 +93,10 @@ const Upload = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-muted p-6">
+    <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-red-500 via-red-300 to-sky-400 p-6">
+      <div className="pointer-events-none absolute -top-24 -left-24 h-[38rem] w-[38rem] rounded-full bg-red-500/45 blur-3xl -z-10" />
+      <div className="pointer-events-none absolute -bottom-32 -right-20 h-[36rem] w-[36rem] rounded-full bg-sky-400/45 blur-3xl -z-10" />
+      <div className="pointer-events-none absolute top-1/3 -right-24 h-[30rem] w-[30rem] rounded-full bg-blue-400/40 blur-3xl -z-10" />
       <div className="max-w-4xl mx-auto">
         <div className="mb-6 animate-fade-in">
           <Button variant="outline" onClick={() => navigate("/dashboard")} className="mb-4 hover:shadow-md transition-all duration-200">
