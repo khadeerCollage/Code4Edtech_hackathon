@@ -93,18 +93,25 @@ os.makedirs(os.path.join(app.config['UPLOAD_FOLDER'], 'images'), exist_ok=True)
 os.makedirs(os.path.join(app.config['UPLOAD_FOLDER'], 'answer_keys'), exist_ok=True)
 os.makedirs(os.path.join(app.config['UPLOAD_FOLDER'], 'debug'), exist_ok=True)
 
-# Database Configuration
-DATABASE_URL = os.getenv('DATABASE_URL', 'postgresql://omr_user:omr_password123@localhost:5432/omr_evaluation_db')
+# Database Configuration - Optional for demo
+DATABASE_URL = os.getenv('DATABASE_URL')
 
-# Handle postgres:// vs postgresql:// URLs
-if DATABASE_URL and DATABASE_URL.startswith("postgres://"):
-    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
-
-app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-# Initialize SQLAlchemy
-db = SQLAlchemy(app)
+if DATABASE_URL:
+    # Handle postgres:// vs postgresql:// URLs
+    if DATABASE_URL.startswith("postgres://"):
+        DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
+    
+    app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    
+    # Initialize SQLAlchemy
+    db = SQLAlchemy(app)
+    DATABASE_AVAILABLE = True
+else:
+    # Use in-memory data for demo
+    db = None
+    DATABASE_AVAILABLE = False
+    print("⚠️ Warning: No database configured, using in-memory data")
 
 # File upload settings
 ALLOWED_IMAGE_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'bmp', 'tiff'}
@@ -237,41 +244,42 @@ def calculate_grade(percentage):
     else: return 'F'
 
 # ================================================================
-# DATABASE MODELS
+# DATABASE MODELS - Only if database is available
 # ================================================================
 
-class User(db.Model):
-    """Enhanced User model for authentication (Login.jsx, Register.jsx)"""
-    __tablename__ = "user"
-    
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(50), unique=True)
-    email = db.Column(db.String(120), unique=True, nullable=False, index=True)
-    password_hash = db.Column(db.String(255), nullable=False)
-    
-    # Relationships
-    batches = db.relationship('OMRBatch', backref='user', lazy=True, cascade='all, delete-orphan')
+if DATABASE_AVAILABLE:
+    class User(db.Model):
+        """Enhanced User model for authentication (Login.jsx, Register.jsx)"""
+        __tablename__ = "user"
+        
+        id = db.Column(db.Integer, primary_key=True)
+        username = db.Column(db.String(50), unique=True)
+        email = db.Column(db.String(120), unique=True, nullable=False, index=True)
+        password_hash = db.Column(db.String(255), nullable=False)
+        
+        # Relationships
+        batches = db.relationship('OMRBatch', backref='user', lazy=True, cascade='all, delete-orphan')
 
-    def set_password(self, raw_password: str):
-        self.password_hash = generate_password_hash(raw_password)
+        def set_password(self, raw_password: str):
+            self.password_hash = generate_password_hash(raw_password)
 
-    def check_password(self, raw_password: str) -> bool:
-        return check_password_hash(self.password_hash, raw_password)
-    
-    def to_dict(self):
-        return {
-            'id': self.id,
+        def check_password(self, raw_password: str) -> bool:
+            return check_password_hash(self.password_hash, raw_password)
+        
+        def to_dict(self):
+            return {
+                'id': self.id,
             'username': self.username,
             'email': self.email,
             
         }
 
-class OMRBatch(db.Model):
-    """Enhanced OMR Batch model (Dashboard.jsx, Batches.jsx, Upload.jsx)"""
-    __tablename__ = "omr_batches"
-    
-    id = db.Column(db.String(50), primary_key=True, default=lambda: str(uuid.uuid4()))
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    class OMRBatch(db.Model):
+        """Enhanced OMR Batch model (Dashboard.jsx, Batches.jsx, Upload.jsx)"""
+        __tablename__ = "omr_batches"
+        
+        id = db.Column(db.String(50), primary_key=True, default=lambda: str(uuid.uuid4()))
+        user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     
     # Exam Information
     exam_name = db.Column(db.String(200), nullable=False)
