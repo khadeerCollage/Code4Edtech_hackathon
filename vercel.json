@@ -22,10 +22,5 @@
       "src": "/(.*)",
       "dest": "frontend/dist/$1"
     }
-  ],
-  "functions": {
-    "backend/app.py": {
-      "maxDuration": 30
-    }
-  }
+  ]
 }
