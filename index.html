@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMR System - Deployment Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        h1 { color: #fff; margin-bottom: 20px; }
+        .status { padding: 10px; border-radius: 5px; margin: 10px 0; }
+        .success { background: rgba(76, 175, 80, 0.3); }
+        .loading { background: rgba(255, 193, 7, 0.3); }
+        .error { background: rgba(244, 67, 54, 0.3); }
+        button { 
+            background: #4CAF50; 
+            color: white; 
+            padding: 10px 20px; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover { background: #45a049; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 OMR Evaluation System</h1>
+        <div class="status success">
+            ✅ Frontend deployment successful!
+        </div>
+        
+        <div id="api-status" class="status loading">
+            🔄 Testing API connection...
+        </div>
+        
+        <div id="demo-data" style="display: none; margin-top: 20px;">
+            <h3>Demo Results Preview:</h3>
+            <div id="results"></div>
+        </div>
+        
+        <div style="margin-top: 20px;">
+            <button onclick="testAPI()">Test API Connection</button>
+            <button onclick="loadDemo()">Load Demo Data</button>
+            <a href="/dashboard" style="text-decoration: none;">
+                <button>Go to Dashboard</button>
+            </a>
+        </div>
+        
+        <div style="margin-top: 30px; font-size: 14px; opacity: 0.8;">
+            <strong>Deployment Status:</strong><br>
+            • Frontend: ✅ Deployed successfully<br>
+            • Backend API: <span id="backend-status">Testing...</span><br>
+            • Version: 1.0.0<br>
+            • Build ID: <span id="build-id">Loading...</span>
+        </div>
+    </div>
+
+    <script>
+        async function testAPI() {
+            const statusDiv = document.getElementById('api-status');
+            statusDiv.className = 'status loading';
+            statusDiv.innerHTML = '🔄 Testing API connection...';
+            
+            try {
+                const response = await fetch('/api/');
+                const data = await response.json();
+                
+                if (response.ok) {
+                    statusDiv.className = 'status success';
+                    statusDiv.innerHTML = `✅ API connected successfully! ${data.message}`;
+                    document.getElementById('backend-status').innerHTML = '✅ Connected';
+                } else {
+                    throw new Error('API not responding');
+                }
+            } catch (error) {
+                statusDiv.className = 'status error';
+                statusDiv.innerHTML = '❌ API connection failed. Using demo mode.';
+                document.getElementById('backend-status').innerHTML = '❌ Demo Mode';
+            }
+        }
+        
+        async function loadDemo() {
+            const demoDiv = document.getElementById('demo-data');
+            const resultsDiv = document.getElementById('results');
+            
+            try {
+                const response = await fetch('/api/batches/91d51108-9c46-417a-8153-0686b8702f34/results');
+                const data = await response.json();
+                
+                let html = '<table border="1" style="width: 100%; color: white;">';
+                html += '<tr><th>Student ID</th><th>Name</th><th>Score</th><th>Grade</th></tr>';
+                
+                data.sheets.forEach(sheet => {
+                    html += `<tr>
+                        <td>${sheet.student_id}</td>
+                        <td>${sheet.student_name}</td>
+                        <td>${sheet.score}%</td>
+                        <td>${sheet.grade}</td>
+                    </tr>`;
+                });
+                
+                html += '</table>';
+                resultsDiv.innerHTML = html;
+                demoDiv.style.display = 'block';
+            } catch (error) {
+                resultsDiv.innerHTML = '<div class="error">Demo data loading failed</div>';
+                demoDiv.style.display = 'block';
+            }
+        }
+        
+        // Auto-test API on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            testAPI();
+            document.getElementById('build-id').innerHTML = new Date().toISOString();
+        });
+    </script>
+</body>
+</html>

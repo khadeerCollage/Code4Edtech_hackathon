@@ -9,21 +9,22 @@
       }
     },
     {
-      "src": "backend/app-minimal.py",
-      "use": "@vercel/python",
-      "config": {
-        "maxLambdaSize": "50mb"
-      }
+      "src": "api/index.py",
+      "use": "@vercel/python"
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "backend/app-minimal.py"
+      "dest": "/api/index.py"
+    },
+    {
+      "src": "/test",
+      "dest": "/index.html"
     },
     {
       "src": "/(.*)",
-      "dest": "frontend/dist/$1"
+      "dest": "frontend/dist/index.html"
     }
   ]
 }
