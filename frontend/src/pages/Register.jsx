@@ -27,11 +27,11 @@ const Register = () => {
   };
 
   return (
-    <div className="relative min-h-screen overflow-hidden flex items-center justify-center bg-gradient-to-br from-sky-200 via-indigo-200 to-rose-300 p-6">
+    <div className="relative min-h-screen overflow-hidden flex items-center justify-center bg-gradient-to-br from-red-500 via-red-300 to-sky-400 p-6">
       {/* Ambient gradient glows */}
-      <div className="pointer-events-none absolute -top-24 -left-24 h-[38rem] w-[38rem] rounded-full bg-sky-400/45 blur-3xl -z-10" />
-      <div className="pointer-events-none absolute -bottom-32 -right-20 h-[36rem] w-[36rem] rounded-full bg-pink-400/45 blur-3xl -z-10" />
-      <div className="pointer-events-none absolute top-1/3 -right-24 h-[30rem] w-[30rem] rounded-full bg-indigo-400/40 blur-3xl -z-10" />
+      <div className="pointer-events-none absolute -top-24 -left-24 h-[38rem] w-[38rem] rounded-full bg-red-500/45 blur-3xl -z-10" />
+      <div className="pointer-events-none absolute -bottom-32 -right-20 h-[36rem] w-[36rem] rounded-full bg-sky-400/45 blur-3xl -z-10" />
+      <div className="pointer-events-none absolute top-1/3 -right-24 h-[30rem] w-[30rem] rounded-full bg-blue-400/40 blur-3xl -z-10" />
 
       {/* Gradient border wrapper for glass card */}
       <div className="w-full max-w-sm p-[1px] rounded-2xl bg-gradient-to-br from-white/80 via-indigo-400/50 to-white/40 shadow-2xl animate-fade-in">

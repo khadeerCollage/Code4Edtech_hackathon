@@ -9,7 +9,7 @@ import Register from "./pages/Register.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import Upload from "./pages/Upload.jsx";
 import Results from "./pages/Results.jsx";
-import WorkflowDemo from "./pages/WorkflowDemo.jsx";
+import Batches from "./pages/Batches.jsx";
 import NotFound from "./pages/NotFound.jsx";
 
 const queryClient = new QueryClient();
@@ -27,7 +27,7 @@ const App = () => (
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/upload" element={<Upload />} />
           <Route path="/results/:batchId" element={<Results />} />
-          <Route path="/workflow-demo" element={<WorkflowDemo />} />
+          <Route path="/batches" element={<Batches />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -200,8 +200,8 @@ const Dashboard = () => {
   const removeAnswerFile = () => setAnswerFile(null);
 
   const handleUpload = async () => {
-    if (!questionSet || files.length === 0) {
-      toast({ title: "Missing Information", description: "Please select question set and upload files", variant: "destructive" });
+    if (files.length === 0) {
+      toast({ title: "No Files Selected", description: "Please add images to upload.", variant: "destructive" });
       return;
     }
 
@@ -209,7 +209,7 @@ const Dashboard = () => {
     setTimeout(() => {
       toast({ title: "Upload Successful", description: `${files.length} image${files.length !== 1 ? "s" : ""} uploaded for processing` });
       setFiles([]);
-      setQuestionSet("");
+      // Question set is optional for quick upload; keep or clear as desired
       setIsUploading(false);
     }, 3000);
   };
@@ -228,10 +228,6 @@ const Dashboard = () => {
   };
 
   const handleAnswerUpload = async () => {
-    if (!questionSet) {
-      toast({ title: "Select Question Set", description: "Please choose a question set before uploading the answer key.", variant: "destructive" });
-      return;
-    }
     if (!answerFile) {
       toast({ title: "No File Selected", description: "Please choose an Excel/CSV file to upload.", variant: "destructive" });
       return;
@@ -239,7 +235,7 @@ const Dashboard = () => {
 
     setIsUploadingAnswer(true);
     setTimeout(() => {
-      toast({ title: "Answer Key Uploaded", description: `${answerFile.name} uploaded for the selected question set.` });
+      toast({ title: "Answer Key Uploaded", description: `${answerFile.name} uploaded successfully.` });
       setIsUploadingAnswer(false);
       setAnswerFile(null);
       setShowResults(true);
@@ -270,7 +266,10 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-muted p-3 md:p-6 no-select">
+    <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-red-500 via-red-300 to-sky-400 p-3 md:p-6 no-select">
+      <div className="pointer-events-none absolute -top-24 -left-24 h-[38rem] w-[38rem] rounded-full bg-red-500/45 blur-3xl -z-10" />
+      <div className="pointer-events-none absolute -bottom-32 -right-20 h-[36rem] w-[36rem] rounded-full bg-sky-400/45 blur-3xl -z-10" />
+      <div className="pointer-events-none absolute top-1/3 -right-24 h-[30rem] w-[30rem] rounded-full bg-blue-400/40 blur-3xl -z-10" />
       <div className="max-w-7xl mx-auto space-y-4 md:space-y-6">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 animate-fade-in no-select">
           <div>
@@ -278,10 +277,6 @@ const Dashboard = () => {
             <p className="text-muted-foreground no-select">OMR Evaluation Platform</p>
           </div>
           <div className="flex flex-wrap gap-3">
-            <Button onClick={() => navigate("/workflow-demo")} variant="outline" size="sm" className="text-xs md:text-sm button-hover-pulse button-icon-rotate">
-              <Play className="w-4 h-4 mr-1 md:mr-2" />
-              View Workflow
-            </Button>
             <Button onClick={() => navigate("/upload")} variant="gradient" size="sm" className="text-xs md:text-sm button-hover-glow button-shimmer">
               <Upload className="w-4 h-4 mr-1 md:mr-2" />
               Full Upload Page
@@ -361,7 +356,7 @@ const Dashboard = () => {
                 </div>
               )}
 
-              <Button onClick={handleUpload} variant="gradient" className="w-full transition-all duration-300 button-hover-glow button-ripple" disabled={isUploading || files.length === 0 || !questionSet} size="sm">
+              <Button onClick={handleUpload} variant="gradient" className="w-full transition-all duration-300 button-hover-glow button-ripple" disabled={isUploading || files.length === 0} size="sm">
                 {isUploading ? "Processing Upload..." : `Upload ${files.length} Image${files.length !== 1 ? "s" : ""}`}
               </Button>
             </CardContent>
@@ -408,7 +403,7 @@ const Dashboard = () => {
                 </div>
               )}
 
-              <Button onClick={handleAnswerUpload} variant="gradient" className="w-full transition-all duration-300 button-hover-glow button-ripple" disabled={isUploadingAnswer || !answerFile || !questionSet} size="sm">
+              <Button onClick={handleAnswerUpload} variant="gradient" className="w-full transition-all duration-300 button-hover-glow button-ripple" disabled={isUploadingAnswer || !answerFile} size="sm">
                 {isUploadingAnswer ? "Uploading Answer Key..." : "Upload Answer Key"}
               </Button>
             </CardContent>
@@ -425,7 +420,10 @@ const Dashboard = () => {
 
         <div className="space-y-4 md:space-y-6 mt-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 animate-slide-up">
-            <Card className="bg-gradient-card shadow-md hover:shadow-lg transition-all duration-300 no-select">
+            <Card 
+              className="bg-gradient-card shadow-md hover:shadow-lg transition-all duration-300 no-select cursor-pointer transform hover:scale-105 hover:-translate-y-1" 
+              onClick={() => navigate("/total-batches")}
+            >
               <CardContent className="p-3 md:p-4 no-select">
                 <div className="flex items-center space-x-2 md:space-x-3 no-select">
                   <div className="p-2 bg-primary/10 rounded-lg">
@@ -439,7 +437,10 @@ const Dashboard = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-gradient-card shadow-md hover:shadow-lg transition-all duration-300 no-select">
+            <Card 
+              className="bg-gradient-card shadow-md hover:shadow-lg transition-all duration-300 no-select cursor-pointer transform hover:scale-105 hover:-translate-y-1" 
+              onClick={() => navigate("/processing-batches")}
+            >
               <CardContent className="p-3 md:p-4 no-select">
                 <div className="flex items-center space-x-2 md:space-x-3 no-select">
                   <div className="p-2 bg-processing/10 rounded-lg">
@@ -453,7 +454,10 @@ const Dashboard = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-gradient-card shadow-md hover:shadow-lg transition-all duration-300 no-select">
+            <Card 
+              className="bg-gradient-card shadow-md hover:shadow-lg transition-all duration-300 no-select cursor-pointer transform hover:scale-105 hover:-translate-y-1" 
+              onClick={() => navigate("/completed-batches")}
+            >
               <CardContent className="p-3 md:p-4 no-select">
                 <div className="flex items-center space-x-2 md:space-x-3 no-select">
                   <div className="p-2 bg-success/10 rounded-lg">
@@ -467,7 +471,10 @@ const Dashboard = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-gradient-card shadow-md hover:shadow-lg transition-all duration-300 no-select">
+            <Card 
+              className="bg-gradient-card shadow-md hover:shadow-lg transition-all duration-300 no-select cursor-pointer transform hover:scale-105 hover:-translate-y-1" 
+              onClick={() => navigate("/flagged-sheets")}
+            >
               <CardContent className="p-3 md:p-4 no-select">
                 <div className="flex items-center space-x-2 md:space-x-3 no-select">
                   <div className="p-2 bg-warning/10 rounded-lg">
