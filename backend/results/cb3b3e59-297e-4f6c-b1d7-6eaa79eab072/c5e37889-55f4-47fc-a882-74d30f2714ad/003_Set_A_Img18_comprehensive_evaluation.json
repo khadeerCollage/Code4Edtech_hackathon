@@ -1,0 +1,789 @@
+{
+  "image": "003_Set_A_Img18.jpeg",
+  "detected_set": "A",
+  "timestamp": "2025-09-21T12:08:58",
+  "total_questions": 42,
+  "score": 8,
+  "percentage": 19.0,
+  "overall_summary": {
+    "correct": 8,
+    "incorrect": 34
+  },
+  "subject_breakdown": {
+    "Python": {
+      "total_questions": 19,
+      "correct": 5,
+      "percentage": 26.3,
+      "incorrect": 14,
+      "unattempted": 0,
+      "multiple_marked": 0
+    },
+    "EDA": {
+      "total_questions": 20,
+      "correct": 3,
+      "percentage": 15.0,
+      "incorrect": 17,
+      "unattempted": 0,
+      "multiple_marked": 0
+    },
+    "SQL": {
+      "total_questions": 19,
+      "correct": 0,
+      "percentage": 0.0,
+      "incorrect": 2,
+      "unattempted": 0,
+      "multiple_marked": 0
+    },
+    "POWER BI": {
+      "total_questions": 20,
+      "correct": 0,
+      "percentage": 0.0,
+      "incorrect": 0,
+      "unattempted": 0,
+      "multiple_marked": 0
+    }
+  },
+  "subject_details": {
+    "Python": {
+      "total": 19,
+      "correct": 5,
+      "incorrect": 14,
+      "unattempted": 0,
+      "multiple_marked": 0,
+      "details": [
+        {
+          "question": 1,
+          "marked": [
+            "a"
+          ],
+          "correct": [
+            "a"
+          ],
+          "status": "correct"
+        },
+        {
+          "question": 2,
+          "marked": [
+            "b"
+          ],
+          "correct": [
+            "c"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 3,
+          "marked": [
+            "b"
+          ],
+          "correct": [
+            "c"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 4,
+          "marked": [
+            "b"
+          ],
+          "correct": [
+            "c"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 5,
+          "marked": [
+            "b"
+          ],
+          "correct": [
+            "c"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 6,
+          "marked": [
+            "c"
+          ],
+          "correct": [
+            "a"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 7,
+          "marked": [
+            "b"
+          ],
+          "correct": [
+            "c"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 8,
+          "marked": [
+            "a"
+          ],
+          "correct": [
+            "c"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 9,
+          "marked": [
+            "a"
+          ],
+          "correct": [
+            "b"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 10,
+          "marked": [
+            "a"
+          ],
+          "correct": [
+            "c"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 11,
+          "marked": [
+            "a"
+          ],
+          "correct": [
+            "a"
+          ],
+          "status": "correct"
+        },
+        {
+          "question": 12,
+          "marked": [
+            "c"
+          ],
+          "correct": [
+            "a"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 13,
+          "marked": [
+            "d"
+          ],
+          "correct": [
+            "d"
+          ],
+          "status": "correct"
+        },
+        {
+          "question": 14,
+          "marked": [
+            "c"
+          ],
+          "correct": [
+            "a"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 15,
+          "marked": [
+            "b"
+          ],
+          "correct": [
+            "b"
+          ],
+          "status": "correct"
+        },
+        {
+          "question": 17,
+          "marked": [
+            "a"
+          ],
+          "correct": [
+            "c"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 18,
+          "marked": [
+            "c"
+          ],
+          "correct": [
+            "d"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 19,
+          "marked": [
+            "d"
+          ],
+          "correct": [
+            "a"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 20,
+          "marked": [
+            "b"
+          ],
+          "correct": [
+            "b"
+          ],
+          "status": "correct"
+        }
+      ]
+    },
+    "EDA": {
+      "total": 20,
+      "correct": 3,
+      "incorrect": 17,
+      "unattempted": 0,
+      "multiple_marked": 0,
+      "details": [
+        {
+          "question": 21,
+          "marked": [
+            "d"
+          ],
+          "correct": [
+            "a"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 22,
+          "marked": [
+            "b"
+          ],
+          "correct": [
+            "d"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 23,
+          "marked": [
+            "d"
+          ],
+          "correct": [
+            "b"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 24,
+          "marked": [
+            "b"
+          ],
+          "correct": [
+            "a"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 25,
+          "marked": [
+            "c"
+          ],
+          "correct": [
+            "c"
+          ],
+          "status": "correct"
+        },
+        {
+          "question": 26,
+          "marked": [
+            "d"
+          ],
+          "correct": [
+            "b"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 27,
+          "marked": [
+            "b"
+          ],
+          "correct": [
+            "a"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 28,
+          "marked": [
+            "c"
+          ],
+          "correct": [
+            "b"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 29,
+          "marked": [
+            "d"
+          ],
+          "correct": [
+            "d"
+          ],
+          "status": "correct"
+        },
+        {
+          "question": 30,
+          "marked": [
+            "a"
+          ],
+          "correct": [
+            "c"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 31,
+          "marked": [
+            "a"
+          ],
+          "correct": [
+            "c"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 32,
+          "marked": [
+            "c"
+          ],
+          "correct": [
+            "a"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 33,
+          "marked": [
+            "a"
+          ],
+          "correct": [
+            "b"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 34,
+          "marked": [
+            "d"
+          ],
+          "correct": [
+            "c"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 35,
+          "marked": [
+            "b"
+          ],
+          "correct": [
+            "a"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 36,
+          "marked": [
+            "c"
+          ],
+          "correct": [
+            "b"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 37,
+          "marked": [
+            "c"
+          ],
+          "correct": [
+            "d"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 38,
+          "marked": [
+            "b"
+          ],
+          "correct": [
+            "b"
+          ],
+          "status": "correct"
+        },
+        {
+          "question": 39,
+          "marked": [
+            "c"
+          ],
+          "correct": [
+            "a"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 40,
+          "marked": [
+            "a"
+          ],
+          "correct": [
+            "b"
+          ],
+          "status": "incorrect"
+        }
+      ]
+    },
+    "SQL": {
+      "total": 19,
+      "correct": 0,
+      "incorrect": 2,
+      "unattempted": 0,
+      "multiple_marked": 0,
+      "details": [
+        {
+          "question": 41,
+          "marked": [
+            "a"
+          ],
+          "correct": [
+            "c"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 42,
+          "marked": [
+            "d"
+          ],
+          "correct": [
+            "c"
+          ],
+          "status": "incorrect"
+        }
+      ]
+    },
+    "POWER BI": {
+      "total": 20,
+      "correct": 0,
+      "incorrect": 0,
+      "unattempted": 0,
+      "multiple_marked": 0,
+      "details": []
+    }
+  },
+  "detailed_results": [
+    {
+      "question": 1,
+      "subject": "Python",
+      "marked": "a",
+      "correct": "a",
+      "status": "correct"
+    },
+    {
+      "question": 2,
+      "subject": "Python",
+      "marked": "b",
+      "correct": "c",
+      "status": "incorrect"
+    },
+    {
+      "question": 3,
+      "subject": "Python",
+      "marked": "b",
+      "correct": "c",
+      "status": "incorrect"
+    },
+    {
+      "question": 4,
+      "subject": "Python",
+      "marked": "b",
+      "correct": "c",
+      "status": "incorrect"
+    },
+    {
+      "question": 5,
+      "subject": "Python",
+      "marked": "b",
+      "correct": "c",
+      "status": "incorrect"
+    },
+    {
+      "question": 6,
+      "subject": "Python",
+      "marked": "c",
+      "correct": "a",
+      "status": "incorrect"
+    },
+    {
+      "question": 7,
+      "subject": "Python",
+      "marked": "b",
+      "correct": "c",
+      "status": "incorrect"
+    },
+    {
+      "question": 8,
+      "subject": "Python",
+      "marked": "a",
+      "correct": "c",
+      "status": "incorrect"
+    },
+    {
+      "question": 9,
+      "subject": "Python",
+      "marked": "a",
+      "correct": "b",
+      "status": "incorrect"
+    },
+    {
+      "question": 10,
+      "subject": "Python",
+      "marked": "a",
+      "correct": "c",
+      "status": "incorrect"
+    },
+    {
+      "question": 11,
+      "subject": "Python",
+      "marked": "a",
+      "correct": "a",
+      "status": "correct"
+    },
+    {
+      "question": 12,
+      "subject": "Python",
+      "marked": "c",
+      "correct": "a",
+      "status": "incorrect"
+    },
+    {
+      "question": 13,
+      "subject": "Python",
+      "marked": "d",
+      "correct": "d",
+      "status": "correct"
+    },
+    {
+      "question": 14,
+      "subject": "Python",
+      "marked": "c",
+      "correct": "a",
+      "status": "incorrect"
+    },
+    {
+      "question": 15,
+      "subject": "Python",
+      "marked": "b",
+      "correct": "b",
+      "status": "correct"
+    },
+    {
+      "question": 16,
+      "subject": "Unknown",
+      "marked": "c",
+      "correct": "",
+      "status": "incorrect"
+    },
+    {
+      "question": 17,
+      "subject": "Python",
+      "marked": "a",
+      "correct": "c",
+      "status": "incorrect"
+    },
+    {
+      "question": 18,
+      "subject": "Python",
+      "marked": "c",
+      "correct": "d",
+      "status": "incorrect"
+    },
+    {
+      "question": 19,
+      "subject": "Python",
+      "marked": "d",
+      "correct": "a",
+      "status": "incorrect"
+    },
+    {
+      "question": 20,
+      "subject": "Python",
+      "marked": "b",
+      "correct": "b",
+      "status": "correct"
+    },
+    {
+      "question": 21,
+      "subject": "EDA",
+      "marked": "d",
+      "correct": "a",
+      "status": "incorrect"
+    },
+    {
+      "question": 22,
+      "subject": "EDA",
+      "marked": "b",
+      "correct": "d",
+      "status": "incorrect"
+    },
+    {
+      "question": 23,
+      "subject": "EDA",
+      "marked": "d",
+      "correct": "b",
+      "status": "incorrect"
+    },
+    {
+      "question": 24,
+      "subject": "EDA",
+      "marked": "b",
+      "correct": "a",
+      "status": "incorrect"
+    },
+    {
+      "question": 25,
+      "subject": "EDA",
+      "marked": "c",
+      "correct": "c",
+      "status": "correct"
+    },
+    {
+      "question": 26,
+      "subject": "EDA",
+      "marked": "d",
+      "correct": "b",
+      "status": "incorrect"
+    },
+    {
+      "question": 27,
+      "subject": "EDA",
+      "marked": "b",
+      "correct": "a",
+      "status": "incorrect"
+    },
+    {
+      "question": 28,
+      "subject": "EDA",
+      "marked": "c",
+      "correct": "b",
+      "status": "incorrect"
+    },
+    {
+      "question": 29,
+      "subject": "EDA",
+      "marked": "d",
+      "correct": "d",
+      "status": "correct"
+    },
+    {
+      "question": 30,
+      "subject": "EDA",
+      "marked": "a",
+      "correct": "c",
+      "status": "incorrect"
+    },
+    {
+      "question": 31,
+      "subject": "EDA",
+      "marked": "a",
+      "correct": "c",
+      "status": "incorrect"
+    },
+    {
+      "question": 32,
+      "subject": "EDA",
+      "marked": "c",
+      "correct": "a",
+      "status": "incorrect"
+    },
+    {
+      "question": 33,
+      "subject": "EDA",
+      "marked": "a",
+      "correct": "b",
+      "status": "incorrect"
+    },
+    {
+      "question": 34,
+      "subject": "EDA",
+      "marked": "d",
+      "correct": "c",
+      "status": "incorrect"
+    },
+    {
+      "question": 35,
+      "subject": "EDA",
+      "marked": "b",
+      "correct": "a",
+      "status": "incorrect"
+    },
+    {
+      "question": 36,
+      "subject": "EDA",
+      "marked": "c",
+      "correct": "b",
+      "status": "incorrect"
+    },
+    {
+      "question": 37,
+      "subject": "EDA",
+      "marked": "c",
+      "correct": "d",
+      "status": "incorrect"
+    },
+    {
+      "question": 38,
+      "subject": "EDA",
+      "marked": "b",
+      "correct": "b",
+      "status": "correct"
+    },
+    {
+      "question": 39,
+      "subject": "EDA",
+      "marked": "c",
+      "correct": "a",
+      "status": "incorrect"
+    },
+    {
+      "question": 40,
+      "subject": "EDA",
+      "marked": "a",
+      "correct": "b",
+      "status": "incorrect"
+    },
+    {
+      "question": 41,
+      "subject": "SQL",
+      "marked": "a",
+      "correct": "c",
+      "status": "incorrect"
+    },
+    {
+      "question": 42,
+      "subject": "SQL",
+      "marked": "d",
+      "correct": "c",
+      "status": "incorrect"
+    }
+  ]
+}

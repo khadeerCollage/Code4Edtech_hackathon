@@ -1,0 +1,1216 @@
+{
+  "image": "008_Set_B_Img23.jpeg",
+  "detected_set": "B",
+  "timestamp": "2025-09-21T12:22:27",
+  "total_questions": 69,
+  "score": 11,
+  "percentage": 15.9,
+  "overall_summary": {
+    "unattempted": 22,
+    "incorrect": 36,
+    "correct": 11
+  },
+  "subject_breakdown": {
+    "Python": {
+      "total_questions": 20,
+      "correct": 3,
+      "percentage": 15.0,
+      "incorrect": 9,
+      "unattempted": 8,
+      "multiple_marked": 0
+    },
+    "EDA": {
+      "total_questions": 20,
+      "correct": 4,
+      "percentage": 20.0,
+      "incorrect": 8,
+      "unattempted": 8,
+      "multiple_marked": 0
+    },
+    "SQL": {
+      "total_questions": 20,
+      "correct": 4,
+      "percentage": 20.0,
+      "incorrect": 14,
+      "unattempted": 2,
+      "multiple_marked": 0
+    },
+    "POWER BI": {
+      "total_questions": 20,
+      "correct": 0,
+      "percentage": 0.0,
+      "incorrect": 5,
+      "unattempted": 4,
+      "multiple_marked": 0
+    }
+  },
+  "subject_details": {
+    "Python": {
+      "total": 20,
+      "correct": 3,
+      "incorrect": 9,
+      "unattempted": 8,
+      "multiple_marked": 0,
+      "details": [
+        {
+          "question": 1,
+          "marked": [],
+          "correct": [
+            "a"
+          ],
+          "status": "unattempted"
+        },
+        {
+          "question": 2,
+          "marked": [
+            "a"
+          ],
+          "correct": [
+            "b"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 3,
+          "marked": [
+            "a"
+          ],
+          "correct": [
+            "d"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 4,
+          "marked": [],
+          "correct": [
+            "b"
+          ],
+          "status": "unattempted"
+        },
+        {
+          "question": 5,
+          "marked": [
+            "b"
+          ],
+          "correct": [
+            "b"
+          ],
+          "status": "correct"
+        },
+        {
+          "question": 6,
+          "marked": [
+            "a"
+          ],
+          "correct": [
+            "d"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 7,
+          "marked": [
+            "a"
+          ],
+          "correct": [
+            "c"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 8,
+          "marked": [],
+          "correct": [
+            "c"
+          ],
+          "status": "unattempted"
+        },
+        {
+          "question": 9,
+          "marked": [],
+          "correct": [
+            "a"
+          ],
+          "status": "unattempted"
+        },
+        {
+          "question": 10,
+          "marked": [
+            "a"
+          ],
+          "correct": [
+            "c"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 11,
+          "marked": [],
+          "correct": [
+            "a"
+          ],
+          "status": "unattempted"
+        },
+        {
+          "question": 12,
+          "marked": [
+            "b"
+          ],
+          "correct": [
+            "b"
+          ],
+          "status": "correct"
+        },
+        {
+          "question": 13,
+          "marked": [
+            "a"
+          ],
+          "correct": [
+            "d"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 14,
+          "marked": [],
+          "correct": [
+            "c"
+          ],
+          "status": "unattempted"
+        },
+        {
+          "question": 15,
+          "marked": [],
+          "correct": [
+            "c"
+          ],
+          "status": "unattempted"
+        },
+        {
+          "question": 16,
+          "marked": [
+            "c"
+          ],
+          "correct": [
+            "a"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 17,
+          "marked": [],
+          "correct": [
+            "c"
+          ],
+          "status": "unattempted"
+        },
+        {
+          "question": 18,
+          "marked": [
+            "d"
+          ],
+          "correct": [
+            "b"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 19,
+          "marked": [
+            "c"
+          ],
+          "correct": [
+            "d"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 20,
+          "marked": [
+            "c"
+          ],
+          "correct": [
+            "c"
+          ],
+          "status": "correct"
+        }
+      ]
+    },
+    "EDA": {
+      "total": 20,
+      "correct": 4,
+      "incorrect": 8,
+      "unattempted": 8,
+      "multiple_marked": 0,
+      "details": [
+        {
+          "question": 21,
+          "marked": [],
+          "correct": [
+            "a"
+          ],
+          "status": "unattempted"
+        },
+        {
+          "question": 22,
+          "marked": [],
+          "correct": [
+            "a"
+          ],
+          "status": "unattempted"
+        },
+        {
+          "question": 23,
+          "marked": [],
+          "correct": [
+            "b"
+          ],
+          "status": "unattempted"
+        },
+        {
+          "question": 24,
+          "marked": [
+            "a"
+          ],
+          "correct": [
+            "a"
+          ],
+          "status": "correct"
+        },
+        {
+          "question": 25,
+          "marked": [],
+          "correct": [
+            "b"
+          ],
+          "status": "unattempted"
+        },
+        {
+          "question": 26,
+          "marked": [],
+          "correct": [
+            "a"
+          ],
+          "status": "unattempted"
+        },
+        {
+          "question": 27,
+          "marked": [
+            "a"
+          ],
+          "correct": [
+            "b"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 28,
+          "marked": [
+            "d"
+          ],
+          "correct": [
+            "b"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 29,
+          "marked": [],
+          "correct": [
+            "c"
+          ],
+          "status": "unattempted"
+        },
+        {
+          "question": 30,
+          "marked": [
+            "a"
+          ],
+          "correct": [
+            "c"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 31,
+          "marked": [
+            "b"
+          ],
+          "correct": [
+            "b"
+          ],
+          "status": "correct"
+        },
+        {
+          "question": 32,
+          "marked": [
+            "b"
+          ],
+          "correct": [
+            "c"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 33,
+          "marked": [],
+          "correct": [
+            "b"
+          ],
+          "status": "unattempted"
+        },
+        {
+          "question": 34,
+          "marked": [
+            "a"
+          ],
+          "correct": [
+            "c"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 35,
+          "marked": [
+            "b"
+          ],
+          "correct": [
+            "a"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 36,
+          "marked": [],
+          "correct": [
+            "a"
+          ],
+          "status": "unattempted"
+        },
+        {
+          "question": 37,
+          "marked": [
+            "a"
+          ],
+          "correct": [
+            "a"
+          ],
+          "status": "correct"
+        },
+        {
+          "question": 38,
+          "marked": [
+            "a"
+          ],
+          "correct": [
+            "b"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 39,
+          "marked": [
+            "b"
+          ],
+          "correct": [
+            "b"
+          ],
+          "status": "correct"
+        },
+        {
+          "question": 40,
+          "marked": [
+            "d"
+          ],
+          "correct": [
+            "a"
+          ],
+          "status": "incorrect"
+        }
+      ]
+    },
+    "SQL": {
+      "total": 20,
+      "correct": 4,
+      "incorrect": 14,
+      "unattempted": 2,
+      "multiple_marked": 0,
+      "details": [
+        {
+          "question": 41,
+          "marked": [
+            "b"
+          ],
+          "correct": [
+            "b"
+          ],
+          "status": "correct"
+        },
+        {
+          "question": 42,
+          "marked": [
+            "c"
+          ],
+          "correct": [
+            "a"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 43,
+          "marked": [
+            "b"
+          ],
+          "correct": [
+            "d"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 44,
+          "marked": [
+            "d"
+          ],
+          "correct": [
+            "b"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 45,
+          "marked": [
+            "d"
+          ],
+          "correct": [
+            "c"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 46,
+          "marked": [
+            "b"
+          ],
+          "correct": [
+            "b"
+          ],
+          "status": "correct"
+        },
+        {
+          "question": 47,
+          "marked": [
+            "a"
+          ],
+          "correct": [
+            "b"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 48,
+          "marked": [
+            "a"
+          ],
+          "correct": [
+            "b"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 49,
+          "marked": [
+            "d"
+          ],
+          "correct": [
+            "b"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 50,
+          "marked": [
+            "a"
+          ],
+          "correct": [
+            "b"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 51,
+          "marked": [
+            "a"
+          ],
+          "correct": [
+            "c"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 52,
+          "marked": [],
+          "correct": [
+            "a"
+          ],
+          "status": "unattempted"
+        },
+        {
+          "question": 53,
+          "marked": [],
+          "correct": [
+            "c"
+          ],
+          "status": "unattempted"
+        },
+        {
+          "question": 54,
+          "marked": [
+            "b"
+          ],
+          "correct": [
+            "a"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 55,
+          "marked": [
+            "c"
+          ],
+          "correct": [
+            "c"
+          ],
+          "status": "correct"
+        },
+        {
+          "question": 56,
+          "marked": [
+            "a"
+          ],
+          "correct": [
+            "c"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 57,
+          "marked": [
+            "a"
+          ],
+          "correct": [
+            "b"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 58,
+          "marked": [
+            "b"
+          ],
+          "correct": [
+            "a"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 59,
+          "marked": [
+            "b"
+          ],
+          "correct": [
+            "b"
+          ],
+          "status": "correct"
+        },
+        {
+          "question": 60,
+          "marked": [
+            "a"
+          ],
+          "correct": [
+            "c"
+          ],
+          "status": "incorrect"
+        }
+      ]
+    },
+    "POWER BI": {
+      "total": 20,
+      "correct": 0,
+      "incorrect": 5,
+      "unattempted": 4,
+      "multiple_marked": 0,
+      "details": [
+        {
+          "question": 61,
+          "marked": [
+            "a"
+          ],
+          "correct": [
+            "b"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 62,
+          "marked": [],
+          "correct": [
+            "b"
+          ],
+          "status": "unattempted"
+        },
+        {
+          "question": 63,
+          "marked": [],
+          "correct": [
+            "b"
+          ],
+          "status": "unattempted"
+        },
+        {
+          "question": 64,
+          "marked": [
+            "a"
+          ],
+          "correct": [
+            "d"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 65,
+          "marked": [
+            "d"
+          ],
+          "correct": [
+            "c"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 66,
+          "marked": [],
+          "correct": [
+            "b"
+          ],
+          "status": "unattempted"
+        },
+        {
+          "question": 67,
+          "marked": [],
+          "correct": [
+            "b"
+          ],
+          "status": "unattempted"
+        },
+        {
+          "question": 68,
+          "marked": [
+            "b"
+          ],
+          "correct": [
+            "a"
+          ],
+          "status": "incorrect"
+        },
+        {
+          "question": 69,
+          "marked": [
+            "d"
+          ],
+          "correct": [
+            "b"
+          ],
+          "status": "incorrect"
+        }
+      ]
+    }
+  },
+  "detailed_results": [
+    {
+      "question": 1,
+      "subject": "Python",
+      "marked": "NONE",
+      "correct": "a",
+      "status": "unattempted"
+    },
+    {
+      "question": 2,
+      "subject": "Python",
+      "marked": "a",
+      "correct": "b",
+      "status": "incorrect"
+    },
+    {
+      "question": 3,
+      "subject": "Python",
+      "marked": "a",
+      "correct": "d",
+      "status": "incorrect"
+    },
+    {
+      "question": 4,
+      "subject": "Python",
+      "marked": "NONE",
+      "correct": "b",
+      "status": "unattempted"
+    },
+    {
+      "question": 5,
+      "subject": "Python",
+      "marked": "b",
+      "correct": "b",
+      "status": "correct"
+    },
+    {
+      "question": 6,
+      "subject": "Python",
+      "marked": "a",
+      "correct": "d",
+      "status": "incorrect"
+    },
+    {
+      "question": 7,
+      "subject": "Python",
+      "marked": "a",
+      "correct": "c",
+      "status": "incorrect"
+    },
+    {
+      "question": 8,
+      "subject": "Python",
+      "marked": "NONE",
+      "correct": "c",
+      "status": "unattempted"
+    },
+    {
+      "question": 9,
+      "subject": "Python",
+      "marked": "NONE",
+      "correct": "a",
+      "status": "unattempted"
+    },
+    {
+      "question": 10,
+      "subject": "Python",
+      "marked": "a",
+      "correct": "c",
+      "status": "incorrect"
+    },
+    {
+      "question": 11,
+      "subject": "Python",
+      "marked": "NONE",
+      "correct": "a",
+      "status": "unattempted"
+    },
+    {
+      "question": 12,
+      "subject": "Python",
+      "marked": "b",
+      "correct": "b",
+      "status": "correct"
+    },
+    {
+      "question": 13,
+      "subject": "Python",
+      "marked": "a",
+      "correct": "d",
+      "status": "incorrect"
+    },
+    {
+      "question": 14,
+      "subject": "Python",
+      "marked": "NONE",
+      "correct": "c",
+      "status": "unattempted"
+    },
+    {
+      "question": 15,
+      "subject": "Python",
+      "marked": "NONE",
+      "correct": "c",
+      "status": "unattempted"
+    },
+    {
+      "question": 16,
+      "subject": "Python",
+      "marked": "c",
+      "correct": "a",
+      "status": "incorrect"
+    },
+    {
+      "question": 17,
+      "subject": "Python",
+      "marked": "NONE",
+      "correct": "c",
+      "status": "unattempted"
+    },
+    {
+      "question": 18,
+      "subject": "Python",
+      "marked": "d",
+      "correct": "b",
+      "status": "incorrect"
+    },
+    {
+      "question": 19,
+      "subject": "Python",
+      "marked": "c",
+      "correct": "d",
+      "status": "incorrect"
+    },
+    {
+      "question": 20,
+      "subject": "Python",
+      "marked": "c",
+      "correct": "c",
+      "status": "correct"
+    },
+    {
+      "question": 21,
+      "subject": "EDA",
+      "marked": "NONE",
+      "correct": "a",
+      "status": "unattempted"
+    },
+    {
+      "question": 22,
+      "subject": "EDA",
+      "marked": "NONE",
+      "correct": "a",
+      "status": "unattempted"
+    },
+    {
+      "question": 23,
+      "subject": "EDA",
+      "marked": "NONE",
+      "correct": "b",
+      "status": "unattempted"
+    },
+    {
+      "question": 24,
+      "subject": "EDA",
+      "marked": "a",
+      "correct": "a",
+      "status": "correct"
+    },
+    {
+      "question": 25,
+      "subject": "EDA",
+      "marked": "NONE",
+      "correct": "b",
+      "status": "unattempted"
+    },
+    {
+      "question": 26,
+      "subject": "EDA",
+      "marked": "NONE",
+      "correct": "a",
+      "status": "unattempted"
+    },
+    {
+      "question": 27,
+      "subject": "EDA",
+      "marked": "a",
+      "correct": "b",
+      "status": "incorrect"
+    },
+    {
+      "question": 28,
+      "subject": "EDA",
+      "marked": "d",
+      "correct": "b",
+      "status": "incorrect"
+    },
+    {
+      "question": 29,
+      "subject": "EDA",
+      "marked": "NONE",
+      "correct": "c",
+      "status": "unattempted"
+    },
+    {
+      "question": 30,
+      "subject": "EDA",
+      "marked": "a",
+      "correct": "c",
+      "status": "incorrect"
+    },
+    {
+      "question": 31,
+      "subject": "EDA",
+      "marked": "b",
+      "correct": "b",
+      "status": "correct"
+    },
+    {
+      "question": 32,
+      "subject": "EDA",
+      "marked": "b",
+      "correct": "c",
+      "status": "incorrect"
+    },
+    {
+      "question": 33,
+      "subject": "EDA",
+      "marked": "NONE",
+      "correct": "b",
+      "status": "unattempted"
+    },
+    {
+      "question": 34,
+      "subject": "EDA",
+      "marked": "a",
+      "correct": "c",
+      "status": "incorrect"
+    },
+    {
+      "question": 35,
+      "subject": "EDA",
+      "marked": "b",
+      "correct": "a",
+      "status": "incorrect"
+    },
+    {
+      "question": 36,
+      "subject": "EDA",
+      "marked": "NONE",
+      "correct": "a",
+      "status": "unattempted"
+    },
+    {
+      "question": 37,
+      "subject": "EDA",
+      "marked": "a",
+      "correct": "a",
+      "status": "correct"
+    },
+    {
+      "question": 38,
+      "subject": "EDA",
+      "marked": "a",
+      "correct": "b",
+      "status": "incorrect"
+    },
+    {
+      "question": 39,
+      "subject": "EDA",
+      "marked": "b",
+      "correct": "b",
+      "status": "correct"
+    },
+    {
+      "question": 40,
+      "subject": "EDA",
+      "marked": "d",
+      "correct": "a",
+      "status": "incorrect"
+    },
+    {
+      "question": 41,
+      "subject": "SQL",
+      "marked": "b",
+      "correct": "b",
+      "status": "correct"
+    },
+    {
+      "question": 42,
+      "subject": "SQL",
+      "marked": "c",
+      "correct": "a",
+      "status": "incorrect"
+    },
+    {
+      "question": 43,
+      "subject": "SQL",
+      "marked": "b",
+      "correct": "d",
+      "status": "incorrect"
+    },
+    {
+      "question": 44,
+      "subject": "SQL",
+      "marked": "d",
+      "correct": "b",
+      "status": "incorrect"
+    },
+    {
+      "question": 45,
+      "subject": "SQL",
+      "marked": "d",
+      "correct": "c",
+      "status": "incorrect"
+    },
+    {
+      "question": 46,
+      "subject": "SQL",
+      "marked": "b",
+      "correct": "b",
+      "status": "correct"
+    },
+    {
+      "question": 47,
+      "subject": "SQL",
+      "marked": "a",
+      "correct": "b",
+      "status": "incorrect"
+    },
+    {
+      "question": 48,
+      "subject": "SQL",
+      "marked": "a",
+      "correct": "b",
+      "status": "incorrect"
+    },
+    {
+      "question": 49,
+      "subject": "SQL",
+      "marked": "d",
+      "correct": "b",
+      "status": "incorrect"
+    },
+    {
+      "question": 50,
+      "subject": "SQL",
+      "marked": "a",
+      "correct": "b",
+      "status": "incorrect"
+    },
+    {
+      "question": 51,
+      "subject": "SQL",
+      "marked": "a",
+      "correct": "c",
+      "status": "incorrect"
+    },
+    {
+      "question": 52,
+      "subject": "SQL",
+      "marked": "NONE",
+      "correct": "a",
+      "status": "unattempted"
+    },
+    {
+      "question": 53,
+      "subject": "SQL",
+      "marked": "NONE",
+      "correct": "c",
+      "status": "unattempted"
+    },
+    {
+      "question": 54,
+      "subject": "SQL",
+      "marked": "b",
+      "correct": "a",
+      "status": "incorrect"
+    },
+    {
+      "question": 55,
+      "subject": "SQL",
+      "marked": "c",
+      "correct": "c",
+      "status": "correct"
+    },
+    {
+      "question": 56,
+      "subject": "SQL",
+      "marked": "a",
+      "correct": "c",
+      "status": "incorrect"
+    },
+    {
+      "question": 57,
+      "subject": "SQL",
+      "marked": "a",
+      "correct": "b",
+      "status": "incorrect"
+    },
+    {
+      "question": 58,
+      "subject": "SQL",
+      "marked": "b",
+      "correct": "a",
+      "status": "incorrect"
+    },
+    {
+      "question": 59,
+      "subject": "SQL",
+      "marked": "b",
+      "correct": "b",
+      "status": "correct"
+    },
+    {
+      "question": 60,
+      "subject": "SQL",
+      "marked": "a",
+      "correct": "c",
+      "status": "incorrect"
+    },
+    {
+      "question": 61,
+      "subject": "POWER BI",
+      "marked": "a",
+      "correct": "b",
+      "status": "incorrect"
+    },
+    {
+      "question": 62,
+      "subject": "POWER BI",
+      "marked": "NONE",
+      "correct": "b",
+      "status": "unattempted"
+    },
+    {
+      "question": 63,
+      "subject": "POWER BI",
+      "marked": "NONE",
+      "correct": "b",
+      "status": "unattempted"
+    },
+    {
+      "question": 64,
+      "subject": "POWER BI",
+      "marked": "a",
+      "correct": "d",
+      "status": "incorrect"
+    },
+    {
+      "question": 65,
+      "subject": "POWER BI",
+      "marked": "d",
+      "correct": "c",
+      "status": "incorrect"
+    },
+    {
+      "question": 66,
+      "subject": "POWER BI",
+      "marked": "NONE",
+      "correct": "b",
+      "status": "unattempted"
+    },
+    {
+      "question": 67,
+      "subject": "POWER BI",
+      "marked": "NONE",
+      "correct": "b",
+      "status": "unattempted"
+    },
+    {
+      "question": 68,
+      "subject": "POWER BI",
+      "marked": "b",
+      "correct": "a",
+      "status": "incorrect"
+    },
+    {
+      "question": 69,
+      "subject": "POWER BI",
+      "marked": "d",
+      "correct": "b",
+      "status": "incorrect"
+    }
+  ]
+}
