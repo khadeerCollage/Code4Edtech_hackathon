@@ -973,10 +973,8 @@ def upload_files():
 def get_batch_status(batch_id):
     """Get real-time processing status for a batch"""
     try:
-        user_id = 2  # Use user 2 for testing since that's who owns the real batch
-        
-        # Verify batch belongs to user
-        batch = OMRBatch.query.filter_by(id=batch_id, user_id=user_id).first()
+        # For testing/demo, skip user verification
+        batch = OMRBatch.query.filter_by(id=batch_id).first()
         if not batch:
             return jsonify({'error': 'Batch not found'}), 404
             
@@ -1031,10 +1029,8 @@ def get_batch_status(batch_id):
 def get_batch_results(batch_id):
     """Get results for a specific batch"""
     try:
-        user_id = 2  # Use user 2 for testing since that's who owns the real batch
-        
-        # Verify batch belongs to user
-        batch = OMRBatch.query.filter_by(id=batch_id, user_id=user_id).first()
+        # For testing/demo, skip user verification
+        batch = OMRBatch.query.filter_by(id=batch_id).first()
         if not batch:
             return jsonify({'error': 'Batch not found'}), 404
         

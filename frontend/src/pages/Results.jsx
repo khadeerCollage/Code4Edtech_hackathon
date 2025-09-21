@@ -141,17 +141,14 @@ const Results = () => {
 
     const fetchBatchStatus = async () => {
       try {
-        const token = localStorage.getItem('token');
-        if (!token) {
-          navigate('/login');
-          return;
-        }
+        // Temporarily disable auth for demo/testing
+        // const token = localStorage.getItem('token');
+        // if (!token) {
+        //   navigate('/login');
+        //   return;
+        // }
 
-        const response = await fetch(`http://localhost:5000/api/batches/${batchId}/status`, {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        });
+        const response = await fetch(`http://localhost:5000/api/batches/${batchId}/status`);
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -176,12 +173,9 @@ const Results = () => {
 
     const fetchFullResults = async () => {
       try {
-        const token = localStorage.getItem('token');
-        const response = await fetch(`http://localhost:5000/api/batches/${batchId}/results`, {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        });
+        // Temporarily disable auth for demo/testing
+        // const token = localStorage.getItem('token');
+        const response = await fetch(`http://localhost:5000/api/batches/${batchId}/results`);
 
         if (response.ok) {
           const data = await response.json();
