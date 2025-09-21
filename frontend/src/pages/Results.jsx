@@ -14,21 +14,87 @@ const Results = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [results, setResults] = useState([]);
+  const [batchStatus, setBatchStatus] = useState(null);
   const [selectedSheet, setSelectedSheet] = useState(null);
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
   const [sortConfig, setSortConfig] = useState(null);
   const [isExporting, setIsExporting] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
+  // Real-time data fetching
   useEffect(() => {
-    const mockResults = [
-      { id: "sheet-001", studentId: "ST001", studentName: "Alice Johnson", score: 85, totalMarks: 100, percentage: 85, status: "Completed" },
-      { id: "sheet-002", studentId: "ST002", studentName: "Bob Smith", score: 92, totalMarks: 100, percentage: 92, status: "Completed" },
-      { id: "sheet-003", studentId: "ST003", studentName: "Carol Davis", score: 78, totalMarks: 100, percentage: 78, status: "Flagged", reviewNotes: "Ambiguous markings in questions 15-17" },
-      { id: "sheet-004", studentId: "ST004", studentName: "David Wilson", score: 88, totalMarks: 100, percentage: 88, status: "Completed" },
-      { id: "sheet-005", studentId: "ST005", studentName: "Eva Brown", score: 95, totalMarks: 100, percentage: 95, status: "Completed" },
-    ];
-    setTimeout(() => setResults(mockResults), 800);
-  }, []);
+    if (!batchId) {
+      navigate('/dashboard');
+      return;
+    }
+
+    const fetchBatchStatus = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+          navigate('/login');
+          return;
+        }
+
+        const response = await fetch(`http://localhost:5000/api/batches/${batchId}/status`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        setBatchStatus(data);
+
+        // If processing is complete, fetch full results
+        if (data.status === 'Completed' || data.completed_sheets > 0) {
+          fetchFullResults();
+        }
+      } catch (error) {
+        console.error('Error fetching batch status:', error);
+        toast({
+          title: "Error",
+          description: "Failed to fetch batch status. Please try again.",
+          variant: "destructive",
+        });
+      }
+    };
+
+    const fetchFullResults = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await fetch(`http://localhost:5000/api/batches/${batchId}/results`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setResults(data.sheets || []);
+        }
+      } catch (error) {
+        console.error('Error fetching results:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    // Initial fetch
+    fetchBatchStatus();
+
+    // Set up polling for real-time updates
+    const interval = setInterval(() => {
+      if (batchStatus?.status !== 'Completed') {
+        fetchBatchStatus();
+      }
+    }, 2000); // Poll every 2 seconds
+
+    return () => clearInterval(interval);
+  }, [batchId, navigate, toast, batchStatus?.status]);
 
   const handleSort = (key) => {
     let direction = "asc";
@@ -100,7 +166,7 @@ const Results = () => {
           <Card className="bg-gradient-card shadow-md">
             <CardContent className="p-6">
               <div className="text-center">
-                <p className="text-2xl font-bold text-foreground">{results.length}</p>
+                <p className="text-2xl font-bold text-foreground">{batchStatus?.total_sheets || 0}</p>
                 <p className="text-sm text-muted-foreground">Total Sheets</p>
               </div>
             </CardContent>
@@ -109,7 +175,7 @@ const Results = () => {
           <Card className="bg-gradient-card shadow-md">
             <CardContent className="p-6">
               <div className="text-center">
-                <p className="text-2xl font-bold text-success">{completedCount}</p>
+                <p className="text-2xl font-bold text-success">{batchStatus?.completed_sheets || 0}</p>
                 <p className="text-sm text-muted-foreground">Completed</p>
               </div>
             </CardContent>
@@ -118,8 +184,8 @@ const Results = () => {
           <Card className="bg-gradient-card shadow-md">
             <CardContent className="p-6">
               <div className="text-center">
-                <p className="text-2xl font-bold text-warning">{flaggedCount}</p>
-                <p className="text-sm text-muted-foreground">Flagged</p>
+                <p className="text-2xl font-bold text-warning">{batchStatus?.failed_sheets || 0}</p>
+                <p className="text-sm text-muted-foreground">Failed</p>
               </div>
             </CardContent>
           </Card>
@@ -127,11 +193,70 @@ const Results = () => {
           <Card className="bg-gradient-card shadow-md">
             <CardContent className="p-6">
               <div className="text-center">
-                <p className="text-2xl font-bold text-primary">{averageScore.toFixed(1)}%</p>
+                <p className="text-2xl font-bold text-primary">{batchStatus?.average_score?.toFixed(1) || '0.0'}%</p>
                 <p className="text-sm text-muted-foreground">Average Score</p>
               </div>
             </CardContent>
           </Card>
+        </div>
+
+        {/* Real-time Progress Bar */}
+        {batchStatus && batchStatus.status !== 'Completed' && (
+          <Card className="animate-bounce-in bg-gradient-card shadow-md">
+            <CardContent className="p-6">
+              <div className="space-y-4">
+                <div className="flex justify-between items-center">
+                  <h3 className="text-lg font-semibold">Processing Progress</h3>
+                  <Badge variant={batchStatus.status === 'Processing' ? 'default' : 'secondary'}>
+                    {batchStatus.status}
+                  </Badge>
+                </div>
+                <div className="w-full bg-gray-200 rounded-full h-3">
+                  <div 
+                    className="bg-blue-600 h-3 rounded-full transition-all duration-500" 
+                    style={{ width: `${batchStatus.progress_percentage}%` }}
+                  ></div>
+                </div>
+                <div className="flex justify-between text-sm text-muted-foreground">
+                  <span>{batchStatus.completed_sheets} / {batchStatus.total_sheets} processed</span>
+                  <span>{batchStatus.progress_percentage.toFixed(1)}%</span>
+                </div>
+                {batchStatus.processing_sheets > 0 && (
+                  <div className="text-sm text-blue-600">
+                    🔄 Currently processing {batchStatus.processing_sheets} sheets...
+                  </div>
+                )}
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Preview Results for Real-time Display */}
+        {batchStatus?.preview_results && batchStatus.preview_results.length > 0 && (
+          <Card className="animate-slide-up bg-gradient-card shadow-md">
+            <CardHeader>
+              <CardTitle>Latest Results</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-2">
+                {batchStatus.preview_results.map((result, index) => (
+                  <div key={index} className="flex justify-between items-center p-3 bg-white/50 rounded-lg">
+                    <div>
+                      <span className="font-medium">{result.student_name}</span>
+                      <span className="text-sm text-muted-foreground ml-2">({result.student_id})</span>
+                    </div>
+                    <div className="text-right">
+                      <span className="font-bold text-lg">{result.percentage}%</span>
+                      <Badge className="ml-2" variant={result.percentage >= 60 ? 'success' : 'destructive'}>
+                        {result.grade}
+                      </Badge>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        )}
         </div>
 
         <Card className="animate-scale-in shadow-lg">
@@ -177,7 +302,7 @@ const Results = () => {
                       <TableCell className="font-medium">{result.studentId}</TableCell>
                       <TableCell>{result.studentName}</TableCell>
                       <TableCell>
-                        {result.score}/{result.totalMarks}
+                        {result.totalScore}/{result.totalQuestions || 100}
                       </TableCell>
                       <TableCell>
                         <div className="flex items-center space-x-2">
@@ -214,53 +339,146 @@ const Results = () => {
             <DialogTitle>Review OMR Sheet</DialogTitle>
           </DialogHeader>
           {selectedSheet && (
-            <div className="space-y-6">
+            <div className="space-y-6 max-h-[80vh] overflow-y-auto">
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <h3 className="font-semibold mb-2">Student Details</h3>
-                  <p>
-                    <span className="font-medium">ID:</span> {selectedSheet.studentId}
-                  </p>
-                  <p>
-                    <span className="font-medium">Name:</span> {selectedSheet.studentName}
-                  </p>
-                  <p>
-                    <span className="font-medium">Score:</span> {selectedSheet.score}/{selectedSheet.totalMarks}
-                  </p>
+                  <p><span className="font-medium">ID:</span> {selectedSheet.studentId}</p>
+                  <p><span className="font-medium">Name:</span> {selectedSheet.studentName}</p>
+                  <p><span className="font-medium">Score:</span> {selectedSheet.totalScore}/{selectedSheet.totalQuestions || 100}</p>
+                  <p><span className="font-medium">Percentage:</span> {selectedSheet.percentage}%</p>
+                  <p><span className="font-medium">Grade:</span> {selectedSheet.grade}</p>
+                  {selectedSheet.detectedSet && (
+                    <p><span className="font-medium">Detected Set:</span> {selectedSheet.detectedSet}</p>
+                  )}
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-2">Status</h3>
+                  <h3 className="font-semibold mb-2">Status & Processing</h3>
                   <Badge className={getStatusColor(selectedSheet.status)}>
                     {getStatusIcon(selectedSheet.status)}
                     <span className="ml-1">{selectedSheet.status}</span>
                   </Badge>
-                  {selectedSheet.reviewNotes && (
-                    <div className="mt-2">
-                      <p className="text-sm text-muted-foreground">Notes:</p>
-                      <p className="text-sm">{selectedSheet.reviewNotes}</p>
+                  {selectedSheet.processingTime && (
+                    <p className="mt-2"><span className="font-medium">Processing Time:</span> {selectedSheet.processingTime}s</p>
+                  )}
+                  {selectedSheet.confidence && (
+                    <p><span className="font-medium">Confidence:</span> {(selectedSheet.confidence * 100).toFixed(1)}%</p>
+                  )}
+                  {selectedSheet.processingDate && (
+                    <p><span className="font-medium">Processed:</span> {new Date(selectedSheet.processingDate).toLocaleString()}</p>
+                  )}
+                </div>
+              </div>
+
+              {/* Subject-wise Breakdown */}
+              {selectedSheet.subjectBreakdown && Object.keys(selectedSheet.subjectBreakdown).length > 0 && (
+                <div className="border rounded-lg p-4 bg-muted/20">
+                  <h3 className="font-semibold mb-3">Subject-wise Performance</h3>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    {Object.entries(selectedSheet.subjectBreakdown).map(([subject, data]) => (
+                      <div key={subject} className="text-center p-3 bg-white rounded-lg">
+                        <h4 className="font-medium text-sm">{subject}</h4>
+                        <div className="mt-1">
+                          <span className="text-lg font-bold text-primary">
+                            {data.correct || 0}
+                          </span>
+                          <span className="text-sm text-muted-foreground">
+                            /{data.questions || 25}
+                          </span>
+                        </div>
+                        <div className="text-xs text-muted-foreground">
+                          {((data.correct || 0) / (data.questions || 25) * 100).toFixed(0)}%
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Detailed Subject Scores */}
+              <div className="border rounded-lg p-4 bg-muted/20">
+                <h3 className="font-semibold mb-3">Individual Subject Scores</h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  {selectedSheet.mathScore !== undefined && (
+                    <div className="text-center p-2 bg-blue-50 rounded">
+                      <div className="font-medium text-blue-800">Math</div>
+                      <div className="text-xl font-bold text-blue-600">{selectedSheet.mathScore}</div>
+                    </div>
+                  )}
+                  {selectedSheet.physicsScore !== undefined && (
+                    <div className="text-center p-2 bg-green-50 rounded">
+                      <div className="font-medium text-green-800">Physics</div>
+                      <div className="text-xl font-bold text-green-600">{selectedSheet.physicsScore}</div>
+                    </div>
+                  )}
+                  {selectedSheet.chemistryScore !== undefined && (
+                    <div className="text-center p-2 bg-purple-50 rounded">
+                      <div className="font-medium text-purple-800">Chemistry</div>
+                      <div className="text-xl font-bold text-purple-600">{selectedSheet.chemistryScore}</div>
+                    </div>
+                  )}
+                  {selectedSheet.historyScore !== undefined && (
+                    <div className="text-center p-2 bg-orange-50 rounded">
+                      <div className="font-medium text-orange-800">History</div>
+                      <div className="text-xl font-bold text-orange-600">{selectedSheet.historyScore}</div>
                     </div>
                   )}
                 </div>
               </div>
 
-              <div className="border rounded-lg p-4 bg-muted/20">
-                <h3 className="font-semibold mb-2">OMR Sheet Preview</h3>
-                <div className="bg-white rounded border p-4">
-                  <img src={omrSheetSample} alt="OMR Sheet Sample" className="w-full max-w-md mx-auto rounded shadow-md" />
+              {/* Question-by-Question Analysis */}
+              {selectedSheet.questionsData && selectedSheet.questionsData.length > 0 && (
+                <div className="border rounded-lg p-4 bg-muted/20">
+                  <h3 className="font-semibold mb-3">Question-by-Question Analysis</h3>
+                  <div className="max-h-64 overflow-y-auto">
+                    <div className="grid grid-cols-5 md:grid-cols-10 gap-2">
+                      {selectedSheet.questionsData.slice(0, 50).map((q, index) => (
+                        <div 
+                          key={index} 
+                          className={`text-center p-2 rounded text-xs ${
+                            q.is_correct 
+                              ? 'bg-green-100 text-green-800' 
+                              : 'bg-red-100 text-red-800'
+                          }`}
+                          title={`Q${q.question}: Marked ${q.marked_answer}, Correct ${q.correct_answer}`}
+                        >
+                          <div className="font-bold">{q.question}</div>
+                          <div className="text-xs">
+                            {q.marked_answer || 'X'}/{q.correct_answer}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    {selectedSheet.questionsData.length > 50 && (
+                      <div className="text-center mt-2 text-sm text-muted-foreground">
+                        Showing first 50 questions out of {selectedSheet.questionsData.length}
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
+              )}
 
-              {selectedSheet.status === "Flagged" && (
-                <div className="flex justify-end space-x-2">
-                  <Button variant="outline" onClick={() => setIsReviewModalOpen(false)}>
-                    Close
-                  </Button>
+              {/* Raw JSON Data (for debugging) */}
+              {selectedSheet.rawResults && (
+                <details className="border rounded-lg p-4 bg-muted/20">
+                  <summary className="font-semibold cursor-pointer">Raw Processing Data (Click to expand)</summary>
+                  <pre className="mt-2 text-xs bg-gray-100 p-3 rounded overflow-x-auto">
+                    {JSON.stringify(selectedSheet.rawResults, null, 2)}
+                  </pre>
+                </details>
+              )}
+
+              <div className="flex justify-end space-x-2">
+                <Button variant="outline" onClick={() => setIsReviewModalOpen(false)}>
+                  Close
+                </Button>
+                {selectedSheet.status === "Flagged" && (
                   <Button onClick={handleApproveSheet} variant="success">
                     <CheckCircle className="w-4 h-4 mr-2" />
                     Approve Sheet
                   </Button>
-                </div>
-              )}
+                )}
+              </div>
             </div>
           )}
         </DialogContent>

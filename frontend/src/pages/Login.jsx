@@ -1,29 +1,84 @@
-import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { Button } from "@/components/ui/button.jsx";
-import { Input } from "@/components/ui/input.jsx";
-import { Label } from "@/components/ui/label.jsx";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card.jsx";
-import { useToast } from "@/hooks/use-toast.js";
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 const Login = () => {
   const [credentials, setCredentials] = useState({ username: "", password: "" });
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
-  const { toast } = useToast();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
+    
+    if (!credentials.username.trim() || !credentials.password.trim()) {
+      setError("Both username and password are required");
+      return;
+    }
+
+    console.log('Starting login process...');
+    console.log('Credentials:', { username: credentials.username });
+
     setIsLoading(true);
-    setTimeout(() => {
-      if (credentials.username && credentials.password) {
-        toast({ title: "Login Successful", description: "Welcome to OMR Evaluation Platform" });
-        navigate("/dashboard");
+    setError("");
+
+    try {
+      console.log('Sending login request...');
+
+      const response = await fetch('http://localhost:5000/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: credentials.username.trim(),
+          password: credentials.password.trim()
+        })
+      });
+
+      console.log('Login response status:', response.status);
+
+      const data = await response.json();
+      console.log('Login response data:', data);
+
+      if (response.ok && data.success) {
+        console.log('Login successful!');
+        
+        // Store token in localStorage
+        if (data.token) {
+          localStorage.setItem('token', data.token);
+          console.log('Token stored successfully');
+        }
+
+        // Store user info
+        if (data.user) {
+          localStorage.setItem('user', JSON.stringify(data.user));
+          console.log('User info stored successfully');
+        }
+
+        // Clear form
+        setCredentials({ username: "", password: "" });
+        
+        // Navigate to dashboard
+        navigate('/dashboard');
       } else {
-        toast({ title: "Login Failed", description: "Please enter valid credentials", variant: "destructive" });
+        console.error('Login failed:', data.message);
+        setError(data.message || 'Invalid credentials');
       }
+    } catch (error) {
+      console.error('Login error:', error);
+      
+      if (error.message.includes('Failed to fetch')) {
+        setError("Cannot connect to server. Please ensure the backend is running.");
+      } else {
+        setError("Login failed. Please try again.");
+      }
+    } finally {
       setIsLoading(false);
-    }, 1500);
+    }
   };
 
   return (
@@ -72,6 +127,7 @@ const Login = () => {
                   />
                 </div>
               </div>
+              {error && <p className="text-red-500 text-sm">{error}</p>}
               <Button
                 type="submit"
                 className="w-full bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white font-medium py-3 rounded-md transition-all duration-300 mt-6 hover:shadow-lg hover:shadow-indigo-400/30 focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white active:scale-[.99]"

@@ -29,7 +29,19 @@ const Upload = () => {
 
   const acceptFiles = useCallback((incoming) => {
     const arr = Array.from(incoming || []);
-    const accepted = arr.filter((file) => file.type && file.type.startsWith("image/"));
+    // Accept all image types including common formats
+    const imageTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp', 'image/bmp'];
+    const accepted = arr.filter((file) => {
+      // Check by MIME type first
+      if (file.type && imageTypes.some(type => file.type.toLowerCase().includes(type.split('/')[1]))) {
+        return true;
+      }
+      // Check by file extension as fallback
+      const fileName = file.name.toLowerCase();
+      return fileName.endsWith('.jpg') || fileName.endsWith('.jpeg') || 
+             fileName.endsWith('.png') || fileName.endsWith('.gif') || 
+             fileName.endsWith('.webp') || fileName.endsWith('.bmp');
+    });
     return accepted;
   }, []);
 
@@ -53,9 +65,88 @@ const Upload = () => {
       const accepted = acceptFiles(e.target.files);
       if (accepted.length > 0) {
         setFiles((prev) => [...prev, ...accepted]);
+        const folderCount = e.target.files.length;
+        const imageCount = accepted.length;
+        if (imageCount < folderCount) {
+          toast({ 
+            title: "Files Filtered", 
+            description: `Found ${imageCount} images out of ${folderCount} files. Non-image files were automatically excluded.`,
+            duration: 4000
+          });
+        } else {
+          toast({ 
+            title: "Images Added", 
+            description: `${imageCount} image${imageCount > 1 ? 's' : ''} selected successfully`
+          });
+        }
       } else {
-        toast({ title: "Invalid File Type", description: "Please upload images only (JPG, PNG)", variant: "destructive" });
+        toast({ 
+          title: "No Images Found", 
+          description: "Please select a folder containing image files (JPG, PNG, GIF, WebP, BMP)", 
+          variant: "destructive" 
+        });
       }
+    }
+  };
+
+  const handleCameraCapture = async () => {
+    try {
+      // Check if camera is available
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        toast({ 
+          title: "Camera Not Supported", 
+          description: "Your browser doesn't support camera access", 
+          variant: "destructive" 
+        });
+        return;
+      }
+
+      // For mobile devices, prefer back camera
+      const constraints = {
+        video: { 
+          facingMode: { ideal: "environment" },
+          width: { ideal: 1920 },
+          height: { ideal: 1080 }
+        }
+      };
+
+      const stream = await navigator.mediaDevices.getUserMedia(constraints);
+      
+      // Create a video element to capture the frame
+      const video = document.createElement('video');
+      video.srcObject = stream;
+      video.play();
+
+      // Wait for video to load
+      video.addEventListener('loadedmetadata', () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        
+        const context = canvas.getContext('2d');
+        context.drawImage(video, 0, 0);
+        
+        // Convert to blob
+        canvas.toBlob((blob) => {
+          const file = new File([blob], `camera-capture-${Date.now()}.jpg`, { type: 'image/jpeg' });
+          setFiles((prev) => [...prev, file]);
+          toast({ 
+            title: "Photo Captured", 
+            description: "Image captured from camera successfully" 
+          });
+          
+          // Stop the stream
+          stream.getTracks().forEach(track => track.stop());
+        }, 'image/jpeg', 0.9);
+      });
+
+    } catch (error) {
+      console.error('Camera access error:', error);
+      toast({ 
+        title: "Camera Access Failed", 
+        description: "Unable to access camera. Please check permissions.", 
+        variant: "destructive" 
+      });
     }
   };
 
@@ -64,9 +155,16 @@ const Upload = () => {
       const accepted = acceptFiles(e.target.files);
       if (accepted.length > 0) {
         setFiles((prev) => [...prev, ...accepted]);
-        toast({ title: "Captured", description: `${accepted.length} image${accepted.length > 1 ? "s" : ""} added from camera` });
+        toast({ 
+          title: "Camera Image Added", 
+          description: `${accepted.length} image${accepted.length > 1 ? "s" : ""} added from camera` 
+        });
       } else {
-        toast({ title: "No image captured", description: "Please try again", variant: "destructive" });
+        toast({ 
+          title: "No valid image", 
+          description: "Please capture a valid image", 
+          variant: "destructive" 
+        });
       }
     }
   };
@@ -78,18 +176,108 @@ const Upload = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Enable upload after file selection; optional to require metadata
+    // Validate files
     if (files.length === 0) {
-      toast({ title: "No Files Selected", description: "Please select images to upload", variant: "destructive" });
+      toast({ 
+        title: "No Files Selected", 
+        description: "Please select images to upload", 
+        variant: "destructive" 
+      });
       return;
+    }
+
+    // For now, we'll create a simple mock answer key since it's not required for basic OMR processing
+    if (!answerKeyVersion) {
+      setAnswerKeyVersion("A"); // Default to version A
     }
 
     setIsUploading(true);
 
-    setTimeout(() => {
-      toast({ title: "Upload Successful", description: `${files.length} image${files.length !== 1 ? "s" : ""} uploaded for processing` });
-      navigate("/dashboard");
-    }, 3000);
+    try {
+      // Prepare form data
+      const formData = new FormData();
+      
+      // Add metadata
+      formData.append('examName', examName || `OMR Upload ${new Date().toLocaleDateString()}`);
+      formData.append('answerKeyVersion', answerKeyVersion);
+      formData.append('schoolName', 'Default School');
+      formData.append('grade', '10');
+      formData.append('subject', 'General');
+      
+      // Add image files
+      files.forEach((file, index) => {
+        formData.append('images', file);
+      });
+      
+      // Use the existing answer key from dataset
+      const answerKeyPath = '../../dataset/data/Key (Set A and B).xlsx';
+      
+      // Create a proper answer key reference
+      formData.append('useExistingAnswerKey', 'true');
+      formData.append('answerKeyPath', answerKeyPath);
+
+      console.log('Uploading files to backend...');
+
+      // Get token from localStorage
+      const token = localStorage.getItem('token');
+      
+      const response = await fetch('http://localhost:5000/api/upload', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        },
+        body: formData
+      });
+
+      if (!response.ok) {
+        const errorData = await response.text();
+        throw new Error(`Upload failed: ${response.status} - ${errorData}`);
+      }
+
+      const result = await response.json();
+      console.log('Upload successful:', result);
+
+      toast({ 
+        title: "Upload Successful", 
+        description: `${files.length} image${files.length !== 1 ? "s" : ""} uploaded and processing started`,
+        duration: 5000
+      });
+      
+      // Reset form
+      setFiles([]);
+      setExamName("");
+      
+      // Navigate to real-time results page
+      setTimeout(() => {
+        navigate(`/results/${result.batch_id}`);
+      }, 1500);
+
+    } catch (error) {
+      console.error('Upload error:', error);
+      
+      let errorMessage = "Upload failed. Please try again.";
+      
+      if (error.message.includes('Failed to fetch')) {
+        errorMessage = "Cannot connect to server. Please ensure you're logged in and the backend is running.";
+      } else if (error.message.includes('401')) {
+        errorMessage = "Authentication failed. Please login again.";
+        // Clear token and redirect to login
+        localStorage.removeItem('token');
+        navigate('/login');
+        return;
+      } else if (error.message.includes('400')) {
+        errorMessage = "Invalid upload data. Please check your files and try again.";
+      }
+
+      toast({ 
+        title: "Upload Failed", 
+        description: errorMessage,
+        variant: "destructive",
+        duration: 6000
+      });
+    } finally {
+      setIsUploading(false);
+    }
   };
 
   return (
@@ -121,19 +309,52 @@ const Upload = () => {
                 onDrop={onDrop}
               >
                 <UploadIcon className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-                <h3 className="text-lg font-semibold mb-2">Drag and drop images here</h3>
+                <h3 className="text-lg font-semibold mb-2">Drop images here</h3>
+                <p className="text-muted-foreground mb-4">Supports JPG, PNG, GIF, WebP, BMP formats</p>
                 <p className="text-muted-foreground mb-4">or</p>
                 <div className="flex items-center justify-center gap-3 flex-wrap">
                   <Button variant="outline" asChild>
                     <label htmlFor="file-upload" className="cursor-pointer">
-                      Browse Images or Folders
-                      <input id="file-upload" type="file" multiple accept="image/*" webkitdirectory="" directory="" onChange={handleFileSelect} className="hidden" />
+                      Browse Images
+                      <input 
+                        id="file-upload" 
+                        type="file" 
+                        multiple 
+                        accept="image/*,.jpg,.jpeg,.png,.gif,.webp,.bmp" 
+                        onChange={handleFileSelect} 
+                        className="hidden" 
+                      />
                     </label>
                   </Button>
                   <Button variant="outline" asChild>
+                    <label htmlFor="folder-upload" className="cursor-pointer">
+                      Select Folder
+                      <input 
+                        id="folder-upload" 
+                        type="file" 
+                        webkitdirectory="" 
+                        directory="" 
+                        multiple 
+                        onChange={handleFileSelect} 
+                        className="hidden" 
+                      />
+                    </label>
+                  </Button>
+                  <Button variant="outline" onClick={handleCameraCapture} className="inline-flex items-center gap-2">
+                    <Camera className="w-4 h-4" /> Open Camera
+                  </Button>
+                  <Button variant="outline" asChild>
                     <label htmlFor="camera-capture" className="cursor-pointer inline-flex items-center gap-2">
-                      <Camera className="w-4 h-4" /> Use Camera
-                      <input id="camera-capture" type="file" accept="image/*" capture="environment" multiple onChange={handleCameraSelect} className="hidden" />
+                      <Camera className="w-4 h-4" /> Upload from Camera
+                      <input 
+                        id="camera-capture" 
+                        type="file" 
+                        accept="image/*" 
+                        capture="environment" 
+                        multiple 
+                        onChange={handleCameraSelect} 
+                        className="hidden" 
+                      />
                     </label>
                   </Button>
                 </div>

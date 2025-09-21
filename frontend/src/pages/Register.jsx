@@ -1,29 +1,102 @@
-import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { Button } from "@/components/ui/button.jsx";
-import { Input } from "@/components/ui/input.jsx";
-import { Label } from "@/components/ui/label.jsx";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card.jsx";
-import { useToast } from "@/hooks/use-toast.js";
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { useToast } from '@/hooks/use-toast';
 
 const Register = () => {
   const [form, setForm] = useState({ username: "", email: "", password: "" });
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
   const { toast } = useToast();
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
+    
+    if (!form.username.trim() || !form.email.trim() || !form.password.trim()) {
+      setError("All fields are required");
+      return;
+    }
+
+    if (form.password.length < 6) {
+      setError("Password must be at least 6 characters long");
+      return;
+    }
+
+    console.log('Starting registration process...');
+    console.log('Form data:', { username: form.username, email: form.email });
+
     setIsLoading(true);
-    setTimeout(() => {
-      if (form.username && form.email && form.password) {
-        toast({ title: "Registration Successful", description: "You can now log in to your account." });
-        navigate("/login");
-      } else {
-        toast({ title: "Registration Failed", description: "Please fill all fields.", variant: "destructive" });
+    setError("");
+
+    try {
+      console.log('Sending registration request to:', 'http://localhost:5000/api/auth/register');
+      
+      const response = await fetch('http://localhost:5000/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: form.username.trim(),
+          email: form.email.trim(),
+          password: form.password.trim()
+        })
+      });
+
+      console.log('Response status:', response.status);
+      console.log('Response headers:', Object.fromEntries(response.headers.entries()));
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Registration failed with status:', response.status, 'Error:', errorText);
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
+
+      const data = await response.json();
+      console.log('Response data:', data);
+
+      if (data.success) {
+        console.log('Registration successful!');
+        
+        toast({
+          title: "Registration successful!",
+          description: "Welcome! You can now login to your account.",
+        });
+
+        // Clear form
+        setForm({ username: "", email: "", password: "" });
+        
+        // Redirect to login page
+        setTimeout(() => {
+          navigate('/login');
+        }, 1500);
+      } else {
+        console.error('Registration failed:', data.message);
+        setError(data.message || "Registration failed. Please try again.");
+      }
+    } catch (error) {
+      console.error('Registration error:', error);
+      
+      if (error.message.includes('Failed to fetch')) {
+        setError("Cannot connect to server. Please ensure the backend is running.");
+      } else if (error.message.includes('HTTP error')) {
+        setError("Server error. Please try again later.");
+      } else {
+        setError(error.message || "Registration failed. Please try again.");
+      }
+
+      toast({
+        variant: "destructive",
+        title: "Registration failed",
+        description: error.message || "Please check your connection and try again.",
+      });
+    } finally {
       setIsLoading(false);
-    }, 1200);
+    }
   };
 
   return (
@@ -47,6 +120,12 @@ const Register = () => {
             </div>
           </CardHeader>
           <CardContent className="space-y-6">
+            {error && (
+              <div className="p-3 bg-red-100 border border-red-400 text-red-700 rounded-md text-sm">
+                {error}
+              </div>
+            )}
+            
             <form onSubmit={handleRegister} className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="username" className="text-gray-700 font-medium">Username</Label>
@@ -58,6 +137,7 @@ const Register = () => {
                     value={form.username}
                     onChange={(e) => setForm({ ...form, username: e.target.value })}
                     className="rounded-md bg-white border-transparent shadow-sm focus-visible:ring-0 focus-visible:ring-offset-0"
+                    required
                   />
                 </div>
               </div>
@@ -72,6 +152,7 @@ const Register = () => {
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
                     className="rounded-md bg-white border-transparent shadow-sm focus-visible:ring-0 focus-visible:ring-offset-0"
+                    required
                   />
                 </div>
               </div>
@@ -86,6 +167,8 @@ const Register = () => {
                     value={form.password}
                     onChange={(e) => setForm({ ...form, password: e.target.value })}
                     className="rounded-md bg-white border-transparent shadow-sm focus-visible:ring-0 focus-visible:ring-offset-0"
+                    required
+                    minLength={6}
                   />
                 </div>
               </div>

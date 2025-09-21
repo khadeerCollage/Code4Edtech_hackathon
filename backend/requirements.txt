@@ -1,28 +1,78 @@
-# Flask Core
+# ================================================================
+# COMPLETE OMR EVALUATION SYSTEM - PYTHON REQUIREMENTS
+# All Dependencies for Backend Flask Application
+# ================================================================
+
+# Core Flask Framework
 Flask==3.0.0
-Flask-CORS==4.0.0
 Flask-SQLAlchemy==3.1.1
+Flask-CORS==4.0.0
+Flask-Migrate==4.0.7
 
 # Database
-psycopg2-binary==2.9.9  # PostgreSQL adapter
+psycopg2-binary==2.9.9
 SQLAlchemy==2.0.23
 
-# Environment and Security
-python-dotenv==1.0.0
+# Authentication & Security
+PyJWT==2.8.0
 Werkzeug==3.0.1
+cryptography==41.0.8
 
-# OMR Processing Dependencies
+# Image Processing (OMR Core)
 opencv-python==4.8.1.78
-numpy==1.24.4
+opencv-contrib-python==4.8.1.78
+Pillow==10.1.0
+numpy==1.25.2
+scipy==1.11.4
+
+# Excel/CSV Processing
 pandas==2.1.4
 openpyxl==3.1.2
+xlrd==2.0.1
+
+# Environment & Configuration
+python-dotenv==1.0.0
+python-decouple==3.8
+
+# Math & Scientific Computing
+scikit-image==0.22.0
 scikit-learn==1.3.2
-Pillow==10.1.0
+matplotlib==3.8.2
 
-# File Handling
-secure-filename==0.1
+# Development & Testing
+pytest==7.4.3
+pytest-flask==1.3.0
 
-# Optional - for advanced features
-# celery==5.3.4  # Background task processing
-# redis==5.0.1   # Message broker
-# gunicorn==21.2.0  # Production server
+# Additional Utilities
+click==8.1.7
+itsdangerous==2.1.2
+MarkupSafe==2.1.3
+Jinja2==3.1.2
+
+# Date/Time Handling
+python-dateutil==2.8.2
+
+# HTTP Requests (for future integrations)
+requests==2.31.0
+
+# Progress Bars & CLI
+tqdm==4.66.1
+
+# Memory and Performance
+psutil==5.9.6
+
+# Logging
+coloredlogs==15.0.1
+
+# File Type Detection
+python-magic==0.4.27
+
+# Image Format Support
+imageio==2.33.0
+
+# Production Server (optional)
+gunicorn==21.2.0
+
+# Background Tasks (optional)
+# celery==5.3.4
+# redis==5.0.1

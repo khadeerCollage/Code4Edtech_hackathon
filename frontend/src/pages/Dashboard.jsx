@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import ResultsTable from "@/components/ResultsTable.jsx";
 import Overview from "@/components/Overview.jsx";
 import { useToast } from "@/hooks/use-toast.js";
-import { FileText, Upload, CheckCircle, AlertCircle, Clock, Play, X, FileSpreadsheet, Camera, Image as ImageIcon } from "lucide-react";
+import { FileText, Upload, CheckCircle, AlertCircle, Clock, Play, X, FileSpreadsheet, Camera, Image as ImageIcon, LogOut } from "lucide-react";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -199,6 +199,24 @@ const Dashboard = () => {
 
   const removeAnswerFile = () => setAnswerFile(null);
 
+  const handleLogout = () => {
+    // Clear authentication data
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    localStorage.removeItem('auth_token');
+    localStorage.removeItem('user_data');
+    
+    // Show logout success message
+    toast({
+      title: "Logged Out",
+      description: "You have been successfully logged out",
+      variant: "default",
+    });
+    
+    // Redirect to login page
+    navigate('/login');
+  };
+
   const handleUpload = async () => {
     if (files.length === 0) {
       toast({ title: "No Files Selected", description: "Please add images to upload.", variant: "destructive" });
@@ -280,6 +298,10 @@ const Dashboard = () => {
             <Button onClick={() => navigate("/upload")} variant="gradient" size="sm" className="text-xs md:text-sm button-hover-glow button-shimmer">
               <Upload className="w-4 h-4 mr-1 md:mr-2" />
               Full Upload Page
+            </Button>
+            <Button onClick={handleLogout} variant="destructive" size="sm" className="text-xs md:text-sm button-hover-glow">
+              <LogOut className="w-4 h-4 mr-1 md:mr-2" />
+              Logout
             </Button>
           </div>
         </div>
