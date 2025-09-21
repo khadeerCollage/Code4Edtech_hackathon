@@ -1,0 +1,28 @@
+# Flask Core
+Flask==3.0.0
+Flask-CORS==4.0.0
+Flask-SQLAlchemy==3.1.1
+
+# Database
+psycopg2-binary==2.9.9  # PostgreSQL adapter
+SQLAlchemy==2.0.23
+
+# Environment and Security
+python-dotenv==1.0.0
+Werkzeug==3.0.1
+
+# OMR Processing Dependencies
+opencv-python==4.8.1.78
+numpy==1.24.4
+pandas==2.1.4
+openpyxl==3.1.2
+scikit-learn==1.3.2
+Pillow==10.1.0
+
+# File Handling
+secure-filename==0.1
+
+# Optional - for advanced features
+# celery==5.3.4  # Background task processing
+# redis==5.0.1   # Message broker
+# gunicorn==21.2.0  # Production server
