@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { apiUrl } from '@/lib/api.js';
 
 const Login = () => {
   const [credentials, setCredentials] = useState({ username: "", password: "" });
@@ -28,7 +29,7 @@ const Login = () => {
     try {
       console.log('Sending login request...');
 
-      const response = await fetch('http://localhost:5000/api/auth/login', {
+      const response = await fetch(apiUrl('/api/auth/login'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

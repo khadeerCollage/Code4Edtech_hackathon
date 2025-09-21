@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
+import { apiUrl } from '@/lib/api.js';
 
 const Register = () => {
   const [form, setForm] = useState({ username: "", email: "", password: "" });
@@ -33,9 +34,9 @@ const Register = () => {
     setError("");
 
     try {
-      console.log('Sending registration request to:', 'http://localhost:5000/api/auth/register');
-      
-      const response = await fetch('http://localhost:5000/api/auth/register', {
+      console.log('Sending registration request to:', apiUrl('/api/auth/register'));
+
+      const response = await fetch(apiUrl('/api/auth/register'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

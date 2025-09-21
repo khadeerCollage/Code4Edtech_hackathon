@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label.jsx";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select.jsx";
 import { useToast } from "@/hooks/use-toast.js";
 import { Upload as UploadIcon, Image as ImageIcon, X, ClipboardList, Camera } from "lucide-react";
+import { apiUrl } from "@/lib/api.js";
 
 const Upload = () => {
   const navigate = useNavigate();
@@ -221,7 +222,7 @@ const Upload = () => {
       // Get token from localStorage
       const token = localStorage.getItem('token');
       
-      const response = await fetch('http://localhost:5000/api/upload', {
+      const response = await fetch(apiUrl('/api/upload'), {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`

@@ -8,6 +8,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { useToast } from "@/hooks/use-toast.js";
 import { ArrowUpDown, Download, Eye, CheckCircle, AlertCircle, ArrowLeft, Loader2, Activity, FileText, TrendingUp, Terminal } from "lucide-react";
 import omrSheetSample from "@/assets/omr-sheet-sample.jpg";
+import { apiUrl } from "@/lib/api.js";
 
 const Results = () => {
   const { batchId } = useParams();
@@ -148,7 +149,7 @@ const Results = () => {
         //   return;
         // }
 
-        const response = await fetch(`http://localhost:5000/api/batches/${batchId}/status`);
+        const response = await fetch(apiUrl(`/api/batches/${batchId}/status`));
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -175,7 +176,7 @@ const Results = () => {
       try {
         // Temporarily disable auth for demo/testing
         // const token = localStorage.getItem('token');
-        const response = await fetch(`http://localhost:5000/api/batches/${batchId}/results`);
+        const response = await fetch(apiUrl(`/api/batches/${batchId}/results`));
 
         if (response.ok) {
           const data = await response.json();

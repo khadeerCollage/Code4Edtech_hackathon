@@ -8,6 +8,7 @@ import ResultsTable from "@/components/ResultsTable.jsx";
 import Overview from "@/components/Overview.jsx";
 import { useToast } from "@/hooks/use-toast.js";
 import { FileText, Upload, CheckCircle, AlertCircle, Clock, Play, X, FileSpreadsheet, Camera, Image as ImageIcon, LogOut } from "lucide-react";
+import { apiUrl } from "@/lib/api.js";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ const Dashboard = () => {
         return;
       }
 
-      const response = await fetch('http://localhost:5000/api/dashboard/stats', {
+      const response = await fetch(apiUrl('/api/dashboard/stats'), {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -62,7 +63,7 @@ const Dashboard = () => {
       const token = localStorage.getItem('token');
       if (!token) return;
 
-      const response = await fetch('http://localhost:5000/api/dashboard/recent-batches', {
+      const response = await fetch(apiUrl('/api/dashboard/recent-batches'), {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -83,7 +84,7 @@ const Dashboard = () => {
       if (!token) return;
 
       // Get the latest batch with completed results
-      const batchesResponse = await fetch('http://localhost:5000/api/batches', {
+      const batchesResponse = await fetch(apiUrl('/api/batches'), {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -97,7 +98,7 @@ const Dashboard = () => {
           const latestBatch = completedBatches[0]; // Most recent completed batch
           
           // Fetch results for the latest batch
-          const resultsResponse = await fetch(`http://localhost:5000/api/batches/${latestBatch.id}/results`, {
+          const resultsResponse = await fetch(apiUrl(`/api/batches/${latestBatch.id}/results`), {
             headers: {
               'Authorization': `Bearer ${token}`
             }
@@ -311,7 +312,7 @@ const Dashboard = () => {
       formData.append('questionSet', questionSet);
       formData.append('examName', `Quick Upload ${new Date().toLocaleDateString()}`);
 
-      const response = await fetch('http://localhost:5000/api/upload', {
+      const response = await fetch(apiUrl('/api/upload'), {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -383,7 +384,7 @@ const Dashboard = () => {
       const formData = new FormData();
       formData.append('answerKey', answerFile);
 
-      const response = await fetch('http://localhost:5000/api/upload-answer-key', {
+      const response = await fetch(apiUrl('/api/upload-answer-key'), {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`
