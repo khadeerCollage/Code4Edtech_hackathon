@@ -452,7 +452,10 @@ const Overview = () => {
 	};
 
 	return (
-		<div className="space-y-6 no-select">
+		<div className="relative space-y-6 no-select">
+			<div className="pointer-events-none absolute -top-24 -left-20 h-80 w-80 rounded-full bg-pink-400/30 blur-3xl -z-10" />
+			<div className="pointer-events-none absolute -bottom-28 -right-24 h-96 w-96 rounded-full bg-cyan-400/30 blur-3xl -z-10" />
+			<div className="pointer-events-none absolute top-1/3 left-1/4 h-72 w-72 rounded-full bg-purple-400/20 blur-3xl -z-10" />
 			<div className="flex justify-between items-center">
 				<div>
 					<h2 className="text-3xl font-bold text-foreground no-select">Evaluation Overview</h2>
@@ -514,10 +517,25 @@ const Overview = () => {
 			</div>
 
 			<Tabs value={selectedView} onValueChange={(value) => setSelectedView(value)} className="no-select">
-				<TabsList className="grid w-full grid-cols-3 no-select">
-					<TabsTrigger value="students" className="no-select">Student Performance</TabsTrigger>
-					<TabsTrigger value="subjects" className="no-select">Subject Analysis</TabsTrigger>
-					<TabsTrigger value="analytics" className="no-select">Advanced Analytics</TabsTrigger>
+				<TabsList className="w-full gap-2 no-select">
+					<TabsTrigger
+						value="students"
+						className="no-select flex-1 rounded-md border transition-all hover:bg-green-50 hover:text-green-700 data-[state=active]:!bg-green-600 data-[state=active]:!text-white data-[state=active]:shadow-md data-[state=active]:ring-2 data-[state=active]:ring-green-300 data-[state=active]:ring-offset-2"
+					>
+						Student Performance
+					</TabsTrigger>
+					<TabsTrigger
+						value="subjects"
+						className="no-select flex-1 rounded-md border transition-all hover:bg-blue-50 hover:text-blue-700 data-[state=active]:!bg-blue-600 data-[state=active]:!text-white data-[state=active]:shadow-md data-[state=active]:ring-2 data-[state=active]:ring-blue-300 data-[state=active]:ring-offset-2"
+					>
+						Subject Analysis
+					</TabsTrigger>
+					<TabsTrigger
+						value="analytics"
+						className="no-select flex-1 rounded-md border transition-all hover:bg-amber-50 hover:text-amber-700 data-[state=active]:!bg-amber-600 data-[state=active]:!text-white data-[state=active]:shadow-md data-[state=active]:ring-2 data-[state=active]:ring-amber-300 data-[state=active]:ring-offset-2"
+					>
+						Advanced Analytics
+					</TabsTrigger>
 				</TabsList>
 
 				<TabsContent value="students" className="space-y-4">
